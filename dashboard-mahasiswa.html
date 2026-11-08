@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Showcase - Dashboard Mahasiswa</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0D213D',
+                            navyHover: '#18355D',
+                            navyActive: '#071324',
+                            navyLight: '#F2F5F9',
+                            navyBorder: '#E7ECF3',
+                            amber: '#FFA719',
+                            amberHover: '#E08E00',
+                            amberDark: '#B87400',
+                            amberLight: '#FFF9EE',
+                            amberBorder: '#FFF1D6',
+                        },
+                        status: {
+                            verifiedBg: '#ECFDF5',
+                            verifiedText: '#065F46',
+                            verifiedBorder: '#A7F3D0',
+                            pendingBg: '#FFFBEB',
+                            pendingText: '#92400E',
+                            pendingBorder: '#FDE68A',
+                            draftBg: '#F8FAFC',
+                            draftText: '#475569',
+                            draftBorder: '#E2E8F0',
+                            dangerBg: '#FEF2F2',
+                            dangerText: '#991B1B',
+                            dangerBorder: '#FECACA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0px 4px 6px -1px rgba(13, 33, 61, 0.08), 0px 2px 4px -2px rgba(13, 33, 61, 0.05)',
+                        'modal': '0px 10px 25px -3px rgba(13, 33, 61, 0.16), 0px 4px 6px -4px rgba(13, 33, 61, 0.08)',
+                        'nav': '0px 1px 3px 0px rgba(13, 33, 61, 0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .focus-ring-amber:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px #FFA719;
+        }
+
+        .no-scrollbar {
+            scrollbar-width: none;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .semester-scroll {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #000917;
+            transition: all 0.25s ease-out;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active-link::after {
+            width: 100%;
+        }
+
+        @media (max-width: 639px) {
+            .notification-panel {
+                position: fixed !important;
+                top: 80px !important;
+                right: 1rem !important;
+                left: 1rem !important;
+                width: auto !important;
+                max-width: none !important;
+            }
+
+            .profile-panel {
+                position: fixed !important;
+                top: 80px !important;
+                right: 1rem !important;
+                left: 1rem !important;
+                width: auto !important;
+                max-width: none !important;
+            }
+
+            .mobile-menu-panel {
+                position: fixed !important;
+                top: 80px !important;
+                right: 1rem !important;
+                left: 1rem !important;
+                width: auto !important;
+                max-width: none !important;
+            }
+
+            .profile-actions > button {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen bg-slate-50 text-slate-800 flex flex-col">
+
+    <!-- TOP NAVIGATION BAR (Sticky) -->
+    <header class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-nav">
+        <div class="max-w-[1440px] mx-auto w-full px-4 sm:px-6 h-[72px] flex items-center justify-between">
+
+            <!-- Left: Logo & University Label -->
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 flex-shrink-0 flex items-center justify-center">
+                    <!-- FTI Showcase Brand Vector Icon Mark -->
+                    <img src="Assets/img/Logo FTI Showcase.svg" alt="FTI Showcase Logo" class="w-8 h-8">
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-extrabold text-xl tracking-tight text-[#0D213D]">FTI Showcase</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 font-medium tracking-tight">Universitas Sebelas April</p>
+                </div>
+            </div>
+
+            <!-- Center Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 h-full">
+                <a href="#explore"
+                    class="nav-link inline-flex items-center text-slate-600 hover:text-[#0D213D] font-medium text-sm transition-colors py-2">
+                    Jelajahi Karya
+                </a>
+                <a href="#proyek-saya"
+                    class="nav-link active-link inline-flex items-center text-slate-600 hover:text-[#0D213D] font-medium text-sm transition-colors py-2">
+                    Proyek Saya
+                    
+                </a>
+                <a href="#bimbingan"
+                    class="nav-link inline-flex items-center text-slate-600 hover:text-[#0D213D] font-medium text-sm transition-colors py-2">
+                    Review Dosen
+                    
+                </a>
+            </nav>
+
+            <!-- Right Side Actions & Profile Pill -->
+            <div class="flex items-center gap-3">
+                <!-- Notification Bell & Dropdown -->
+                <details class="relative">
+                    <summary
+                        class="relative flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-brand-navy focus-ring-amber [&::-webkit-details-marker]:hidden"
+                        aria-label="Buka notifikasi">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span
+                            class="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-red-500 text-[10px] font-bold text-white">2</span>
+                    </summary>
+                    <div
+                        class="notification-panel absolute right-0 top-14 z-50 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg sm:w-96">
+                        <div class="flex items-center justify-between border-b border-slate-100 px-4 py-3">
+                            <div>
+                                <h2 class="text-sm font-bold text-brand-navy">Notifikasi</h2>
+                                <p class="mt-0.5 text-[11px] text-slate-500">Pembaruan terbaru untuk proyekmu</p>
+                            </div>
+                            <span
+                                class="rounded-full bg-red-50 px-2 py-1 text-[10px] font-bold text-red-600">2 Baru</span>
+                        </div>
+                        <div class="divide-y divide-slate-100">
+                            <a href="#proyek-saya" class="block p-4 transition hover:bg-slate-50">
+                                <div class="flex gap-3">
+                                    <span
+                                        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </span>
+                                    <span class="min-w-0">
+                                        <span class="block text-xs font-bold text-brand-navy">Proyek tervalidasi dosen</span>
+                                        <span class="mt-1 block text-xs leading-relaxed text-slate-600">
+                                            “FTI Showcase Platform” telah disetujui dan sekarang tampil sebagai karya
+                                            terverifikasi.
+                                        </span>
+                                        <span class="mt-2 block text-[10px] font-medium text-slate-400">Baru saja</span>
+                                    </span>
+                                </div>
+                            </a>
+                            <a href="#proyek-saya" class="block p-4 transition hover:bg-slate-50">
+                                <div class="flex gap-3">
+                                    <span
+                                        class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-amberLight text-brand-amberDark">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 9v2m0 4h.01M10.29 3.86l-7.4 12.82A2 2 0 004.63 19.7h14.74a2 2 0 001.74-3.02l-7.4-12.82a2 2 0 00-3.42 0z" />
+                                        </svg>
+                                    </span>
+                                    <span class="min-w-0">
+                                        <span class="block text-xs font-bold text-brand-navy">Masukan dari dosen pembimbing</span>
+                                        <span class="mt-1 block text-xs leading-relaxed text-slate-600">
+                                            “Tambahkan penjelasan alur validasi data pada deskripsi proyek agar kontribusimu
+                                            lebih mudah dipahami.”
+                                        </span>
+                                        <span class="mt-2 block text-[10px] font-medium text-slate-400">Kemarin</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="#bimbingan"
+                            class="block border-t border-slate-100 bg-slate-50 px-4 py-3 text-center text-xs font-bold text-brand-navy hover:bg-brand-navyLight">
+                            Lihat semua notifikasi
+                        </a>
+                    </div>
+                </details>
+
+                <div class="h-6 w-[1px] bg-slate-200"></div>
+
+                <!-- Mobile Navigation -->
+                <details class="relative order-3 md:hidden">
+                    <summary
+                        class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 hover:text-brand-navy focus-ring-amber [&::-webkit-details-marker]:hidden"
+                        aria-label="Buka navigasi">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </summary>
+                    <div
+                        class="mobile-menu-panel absolute right-0 top-14 z-50 w-64 overflow-hidden rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
+                        <div class="mb-2 flex items-center gap-3 rounded-lg bg-brand-navyLight px-3 py-3">
+                            <span
+                                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-navy text-xs font-extrabold text-brand-amber ring-2 ring-white">
+                                K2
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block truncate text-xs font-bold text-brand-navy">Kelompok 2</span>
+                                <span class="block text-[10px] font-medium text-slate-500">Mahasiswa · 240160121041</span>
+                            </span>
+                        </div>
+                        <a href="#explore"
+                            class="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                            Explore Hub
+                        </a>
+                        <a href="#proyek-saya"
+                            class="block rounded-lg bg-brand-navyLight px-3 py-2.5 text-sm font-bold text-brand-navy">
+                            Proyek Saya
+                        </a>
+                        <a href="#bimbingan"
+                            class="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                            Review Dosen
+                        </a>
+                        <div class="my-2 border-t border-slate-100"></div>
+                        <a href="profil-mahasiswa.html"
+                            class="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                            Lihat Profil Saya
+                        </a>
+                        <a href="pengaturan-akun.html"
+                            class="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                            Pengaturan Akun
+                        </a>
+                        <a href="#keluar"
+                            class="block rounded-lg px-3 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50">
+                            Keluar
+                        </a>
+                    </div>
+                </details>
+
+                <!-- User Profile Dropdown -->
+                <details class="relative hidden md:block">
+                    <summary
+                        class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-slate-200 p-1 transition hover:border-slate-300 hover:bg-slate-50 focus-ring-amber sm:gap-3 sm:pl-1.5 sm:pr-2.5 [&::-webkit-details-marker]:hidden"
+                        aria-label="Buka profil pengguna">
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-navy text-xs font-bold text-brand-amber ring-2 ring-brand-navy/10">
+                            <span class="font-extrabold text-[12px]">K2</span>
+                        </span>
+                        <span class="hidden text-left sm:block">
+                            <span class="block text-xs font-bold leading-tight text-brand-navy">Kelompok 2</span>
+                            <span class="block text-[10px] font-medium text-slate-500">Mahasiswa</span>
+                        </span>
+                        <svg class="mr-1 h-4 w-4 text-slate-400 sm:ml-0.5 sm:mr-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div
+                        class="profile-panel absolute right-0 top-14 z-50 w-[calc(100vw-2rem)] max-w-xs overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg sm:w-72">
+                        <div class="flex items-center gap-3 border-b border-slate-100 px-4 py-4">
+                            <span
+                                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-navy text-sm font-extrabold text-brand-amber ring-4 ring-brand-navyLight">
+                                K2
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block truncate text-sm font-bold text-brand-navy">Kelompok 2</span>
+                                <span class="block text-xs font-medium text-slate-500">240160121041</span>
+                                <span class="block text-[11px] text-slate-400">S1 Teknik Informatika</span>
+                            </span>
+                        </div>
+                        <div class="p-2">
+                            <a href="profil-mahasiswa.html"
+                                class="block rounded-lg px-3 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                                Lihat Profil Saya
+                            </a>
+                            <a href="pengaturan-akun.html"
+                                class="block rounded-lg px-3 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-navy">
+                                Pengaturan Akun
+                            </a>
+                        </div>
+                        <div class="border-t border-slate-100 p-2">
+                            <a href="#keluar"
+                                class="block rounded-lg px-3 py-2.5 text-xs font-semibold text-red-600 hover:bg-red-50">
+                                Keluar
+                            </a>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- MAIN CANVAS WORKSPACE -->
+    <main class="flex-grow max-w-[1440px] w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col gap-6 sm:gap-8">
+
+        <!-- SECTION B: STUDENT PROFILE HERO HEADER CARD -->
+        <section class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 md:p-7 shadow-card relative overflow-hidden">
+            <!-- Decorative accent pattern in top-right -->
+            <div
+                class="absolute -right-16 -top-16 w-56 h-56 bg-brand-navyLight rounded-full pointer-events-none opacity-60">
+            </div>
+            
+
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+
+                <!-- Left: Student Info & Meta -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                    <!-- Avatar Stack with Status Ring -->
+                    <div class="relative">
+                        <div
+                            class="w-16 h-16 rounded-full bg-brand-navy text-white flex items-center justify-center font-extrabold text-2xl shadow-md border-2 border-white ring-4 ring-brand-navyLight">
+                            K2
+                        </div>
+                        
+                    </div>
+
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2.5 mb-3.5">
+                            <h1 class="text-2xl md:text-[28px] font-bold text-brand-navy tracking-tight">Kelompok 2
+                            </h1>
+                            <span
+                                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                
+                            </span>
+                        </div>
+
+                        <p class="text-sm text-slate-600 mt-1 font-medium">
+                            NIM: <span class="font-bold text-slate-800">240160121041</span>
+                        </p>
+                        <p class="text-sm text-slate-600 mt-1 font-medium">
+                            Prodi: <span class="text-brand-navy font-semibold">S1 Teknik Informatika</span>
+                        </p>
+                        <p class="text-sm text-slate-600 mt-1 font-medium">
+                            Tingkat: <span class="text-brand-navy font-semibold">3 (Semester 5)</span>
+                        </p>
+
+                    </div>
+                </div>
+
+                <!-- Right: Action Buttons Group -->
+                <div class="profile-actions flex w-full lg:w-auto flex-wrap items-center gap-3">
+                    <!-- Button 1: Lihat Profil Publik -->
+                    <button
+                        class="min-h-[44px] px-4 py-2.5 rounded-md border-[1.5px] border-brand-navy text-brand-navy hover:bg-brand-navyLight font-semibold text-sm inline-flex items-center gap-2 transition focus-ring-amber">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span>Lihat Profil Publik</span>
+                    </button>
+
+                    <!-- Button 2: Ghost QR Code -->
+                    <button
+                        class="min-h-[44px] px-3.5 py-2.5 rounded-md border-[1.5px] border-brand-navy text-brand-navy hover:bg-slate-100 font-semibold text-sm inline-flex items-center gap-2 transition focus-ring-amber">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+                        </svg>
+                        <span>QR Code Saya</span>
+                    </button>
+
+
+
+                    <!-- Button 3: Primary CTA Tambah Proyek Baru -->
+                    <button
+                        id="openProjectWizard"
+                        class="min-h-[44px] px-5 py-2.5 rounded-md bg-brand-navy hover:bg-brand-navyHover active:bg-brand-navyActive text-white font-bold text-sm inline-flex items-center gap-2 shadow-sm transition focus-ring-amber">
+                        <svg class="w-4 h-4 text-brand-amber stroke-[2.5]" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M12 4v16m8-8H4" />
+                        </svg>
+                        <span>Tambah Proyek Baru</span>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION C: CONTROLS & FILTER BAR SECTION -->
+        <section class="flex flex-col gap-4">
+
+            <!-- Semester Horizontal Tab Bar -->
+            <div class="semester-scroll min-w-0 border-b border-slate-200 overflow-x-auto no-scrollbar"
+                role="tablist" aria-label="Filter semester" tabindex="0">
+                <div class="flex w-max min-w-full items-center gap-2 pb-1">
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semua Semester (8)
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 1
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 2
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 3
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 4
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 5
+                    </button>
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-500 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 6
+                    </button>
+
+                    <!-- Active Tab: Semester 7 (Aktif) -->
+                    <button
+                        class="relative px-4 py-2 text-sm font-bold text-brand-navy bg-brand-navyLight border-b-2 border-brand-navy rounded-t-md transition">
+                        Semester 7
+                        
+                    </button>
+
+                    <button
+                        class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-brand-navy hover:bg-slate-100/60 rounded-md transition">
+                        Semester 8
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls Row: Search + Status Dropdown + Total Count -->
+            <div
+                class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+
+                <!-- Left: Search Box Input -->
+                <div class="relative flex-grow max-w-md">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" placeholder="Cari proyek berdasarkan judul, tech stack, atau mata kuliah."
+                        class="w-full h-10 pl-10 pr-4 text-sm bg-white border border-slate-200 rounded-md text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-navy focus-ring-amber transition">
+                </div>
+
+                <!-- Right: Status Dropdown Filter & Stats Summary -->
+                <div class="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+                    <div class="relative">
+                        <select
+                            class="h-10 w-full pl-3 pr-9 text-sm font-medium bg-white border border-slate-200 rounded-md text-slate-700 hover:border-slate-300 focus:outline-none focus:border-brand-navy focus-ring-amber appearance-none cursor-pointer sm:w-auto">
+                            <option value="all">Semua Status Validasi</option>
+                            <option value="verified">Terverifikasi Dosen</option>
+                            <option value="pending">Menunggu Validasi</option>
+                            <option value="draft">Draf Belum Diajukan</option>
+                        </select>
+                        <div
+                            class="absolute inset-y-0 right-0 flex items-center px-2.5 pointer-events-none text-slate-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <span class="text-xs font-semibold text-slate-500 hidden md:inline">
+                        Menampilkan <strong class="text-brand-navy">2 dari 2 proyek</strong>
+                    </span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION D: PROJECT CATALOG GRID (3 Columns Responsive Grid, Gap 24px) -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-brand-navy tracking-tight flex items-center gap-2">
+                    Karya & Proyek Terdaftar
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Semester
+                        7</span>
+                </h2>
+                
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- CARD 1: Terverifikasi Dosen -->
+                <article
+                    class="bg-white rounded-xl border border-slate-200 shadow-card hover:shadow-lg transition-all duration-200 flex flex-col overflow-hidden group">
+
+                    <!-- 16:9 Thumbnail with Overlay Badges -->
+                    <div
+                        class="relative w-full aspect-video bg-gradient-to-br from-slate-900 to-brand-navy overflow-hidden">
+                        <!-- Project Preview Mockup Illustration -->
+                        <div class="absolute inset-0 p-4 flex flex-col justify-between">
+                            <div class="w-full flex items-center justify-between">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                </div>
+                                <span
+                                    class="text-[10px] font-mono text-slate-300 bg-white/10 px-2 py-0.5 rounded">fti-showcase.unsap.ac.id</span>
+                            </div>
+                            <div class="my-auto text-center px-4">
+                                <p class="text-xs uppercase tracking-widest text-brand-amber font-bold">Academic
+                                    Portfolio</p>
+                                <p class="text-white font-extrabold text-base tracking-tight mt-0.5">FTI Showcase
+                                    Platform</p>
+                                <p class="text-[11px] text-slate-300 mt-1">Sistem Portofolio Mahasiswa Terpadu</p>
+                            </div>
+                            <div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-amber w-3/4"></div>
+                            </div>
+                        </div>
+
+                        <!-- Overlay Badges -->
+                        <!-- Top-Left: Visibility Pill -->
+                        <div class="absolute top-3 left-3 z-10">
+                            <span
+                                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/95 text-brand-navy shadow-sm backdrop-blur-sm">
+                                <svg class="w-3 h-3 text-brand-navy" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                </svg>
+                                Publik
+                            </span>
+                        </div>
+
+                        <!-- Top-Right: Verified Status Badge -->
+                        <div class="absolute top-3 right-3 z-10">
+                            <span
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] shadow-sm">
+                                <svg class="w-3.5 h-3.5 text-[#065F46]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Terverifikasi Dosen
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Content Body -->
+                    <div class="p-5 flex flex-col flex-grow">
+                        <!-- Course & Semester Subtitle -->
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Mata Kuliah: Desain UI/UX · Semester 7
+                        </p>
+
+                        <!-- Title -->
+                        <h3 class="text-lg font-bold text-brand-navy mt-1 group-hover:text-brand-navyHover transition">
+                            FTI Showcase Platform
+                        </h3>
+
+                        <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                            Platform katalog portofolio akademik untuk menampilkan luaran karya mahasiswa teknik
+                            informatika terverifikasi oleh dosen pembimbing.
+                        </p>
+
+                        <!-- Role Tag Chip -->
+                        <div class="mt-3.5 flex flex-wrap gap-1.5">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-brand-navyLight text-brand-navy border border-brand-navyBorder">
+                                Lead UI/UX Designer
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                Figma
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                Tailwind CSS
+                            </span>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="my-4 border-t border-slate-100"></div>
+
+                        <!-- Footer: Avatar Stack & Actions -->
+                        <div class="mt-auto flex min-w-0 items-center gap-2">
+
+                            <!-- Team Member Avatars (3 people) -->
+                            <div class="flex min-w-0 flex-1 items-center">
+                                <div class="flex shrink-0 -space-x-2 overflow-hidden">
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-brand-navy text-white text-[10px] font-bold flex items-center justify-center">
+                                        SS</div>
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center">
+                                        AR</div>
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-slate-700 text-white text-[10px] font-bold flex items-center justify-center">
+                                        FN</div>
+                                </div>
+                                <span class="ml-2 truncate text-xs text-slate-500 font-medium">3 Anggota Tim</span>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="ml-auto flex shrink-0 items-center gap-1.5">
+                                <button
+                                    class="h-9 px-4 rounded-md border border-brand-navy text-brand-navy hover:bg-brand-navyLight font-semibold text-xs transition focus-ring-amber">
+                                    Edit
+                                </button>
+                                <button
+                                    class="w-9 h-9 flex items-center justify-center rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition focus-ring-amber"
+                                    aria-label="Menu opsi">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- CARD 2: Menunggu Validasi -->
+                <article
+                    class="bg-white rounded-xl border border-slate-200 shadow-card hover:shadow-lg transition-all duration-200 flex flex-col overflow-hidden group">
+
+                    <!-- 16:9 Thumbnail with Overlay Badges -->
+                    <div
+                        class="relative w-full aspect-video bg-gradient-to-br from-emerald-950 to-slate-900 overflow-hidden">
+                        <!-- IoT Circuit / GreenHouse Preview -->
+                        <div class="absolute inset-0 p-4 flex flex-col justify-between">
+                            <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+                                <span
+                                    class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">ESP32
+                                    + MQTT</span>
+                                <span class="text-[10px] font-mono text-emerald-400">Node: ONLINE</span>
+                            </div>
+                            <div class="my-auto text-center px-4">
+                                <div class="inline-block p-2 rounded-full bg-emerald-500/20 text-emerald-300 mb-1">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                    </svg>
+                                </div>
+                                <p class="text-white font-extrabold text-base tracking-tight">Smart GreenHouse IoT</p>
+                                <p class="text-[11px] text-slate-300">Pengendali Suhu & Kelembaban Otomatis</p>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+                                <span>Temp: 27.4°C</span>
+                                <span>Humidity: 68%</span>
+                            </div>
+                        </div>
+
+                        <!-- Overlay Badges -->
+                        <!-- Top-Left: Tautan Terbatas -->
+                        <div class="absolute top-3 left-3 z-10">
+                            <span
+                                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/95 text-slate-700 shadow-sm backdrop-blur-sm">
+                                <svg class="w-3 h-3 text-slate-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                </svg>
+                                Tautan Terbatas
+                            </span>
+                        </div>
+
+                        <!-- Top-Right: Pending Status Badge -->
+                        <div class="absolute top-3 right-3 z-10">
+                            <span
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-[#FFFBEB] text-[#92400E] border border-[#FDE68A] shadow-sm">
+                                <svg class="w-3.5 h-3.5 text-[#92400E]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Menunggu Validasi
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Content Body -->
+                    <div class="p-5 flex flex-col flex-grow">
+                        <!-- Course Subtitle -->
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Mata Kuliah: IoT & Embedded Systems · Semester 6
+                        </p>
+
+                        <!-- Title -->
+                        <h3 class="text-lg font-bold text-brand-navy mt-1 group-hover:text-brand-navyHover transition">
+                            Smart GreenHouse IoT Controller
+                        </h3>
+
+                        <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                            Sistem telemetri agrikultur mikro berbasis mikrokontroler ESP32 dengan dashboard analitik
+                            sensor kelembaban tanah real-time.
+                        </p>
+
+                        <!-- Role Tag Chip -->
+                        <div class="mt-3.5 flex flex-wrap gap-1.5">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-brand-navyLight text-brand-navy border border-brand-navyBorder">
+                                Backend Developer
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                Node.js
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                MQTT
+                            </span>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="my-4 border-t border-slate-100"></div>
+
+                        <!-- Footer: Avatar Stack & Actions -->
+                        <div class="mt-auto flex min-w-0 items-center gap-2">
+
+                            <!-- Team Member Avatars (2 people) -->
+                            <div class="flex min-w-0 flex-1 items-center">
+                                <div class="flex shrink-0 -space-x-2 overflow-hidden">
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-brand-navy text-white text-[10px] font-bold flex items-center justify-center">
+                                        SS</div>
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">
+                                        DF</div>
+                                </div>
+                                <span class="ml-2 truncate text-xs text-slate-500 font-medium">2 Anggota Tim</span>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="ml-auto flex shrink-0 items-center gap-1.5">
+                                <button
+                                    class="h-9 px-4 rounded-md border border-brand-navy text-brand-navy hover:bg-brand-navyLight font-semibold text-xs transition focus-ring-amber">
+                                    Edit
+                                </button>
+                                <button
+                                    class="w-9 h-9 flex items-center justify-center rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition focus-ring-amber"
+                                    aria-label="Menu opsi">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- CARD 3: Project with 5 Team Members -->
+                <article
+                    class="bg-white rounded-xl border border-slate-200 shadow-card hover:shadow-lg transition-all duration-200 flex flex-col overflow-hidden group">
+                    <div
+                        class="relative w-full aspect-video bg-gradient-to-br from-brand-navy to-slate-800 overflow-hidden">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                            <span class="text-[10px] font-bold tracking-widest text-brand-amber uppercase">Campus
+                                Project</span>
+                            <p class="mt-2 text-base font-extrabold tracking-tight text-white">Smart Campus
+                                Dashboard</p>
+                            <p class="mt-1 text-[11px] text-slate-300">Monitoring fasilitas kampus terpadu</p>
+                            <div class="mt-5 h-1.5 w-3/4 overflow-hidden rounded-full bg-white/20">
+                                <div class="h-full w-4/5 rounded-full bg-brand-amber"></div>
+                            </div>
+                        </div>
+                        <div class="absolute left-3 top-3">
+                            <span
+                                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-white/95 text-slate-700 shadow-sm">
+                                Publik
+                            </span>
+                        </div>
+                        <div class="absolute right-3 top-3">
+                            <span
+                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-sm">
+                                Terverifikasi
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Mata Kuliah: Rekayasa Perangkat Lunak · Semester 5
+                        </p>
+                        <h3 class="text-lg font-bold text-brand-navy mt-1 group-hover:text-brand-navyHover transition">
+                            Smart Campus Dashboard
+                        </h3>
+                        <p class="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
+                            Dashboard pemantauan fasilitas kampus dengan data real-time untuk membantu pengelolaan
+                            ruang dan layanan akademik.
+                        </p>
+                        <div class="mt-3.5 flex flex-wrap gap-1.5">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-brand-navyLight text-brand-navy border border-brand-navyBorder">
+                                Frontend Developer
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                React
+                            </span>
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-600">
+                                Laravel
+                            </span>
+                        </div>
+                        <div class="my-4 border-t border-slate-100"></div>
+                        <div class="mt-auto flex min-w-0 items-center gap-2">
+                            <div class="flex min-w-0 flex-1 items-center">
+                                <div class="flex shrink-0 -space-x-2 overflow-hidden">
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-brand-navy text-white text-[10px] font-bold flex items-center justify-center">
+                                        SS</div>
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">
+                                        AR</div>
+                                    <div
+                                        class="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-slate-200 text-slate-600 text-[10px] font-bold flex items-center justify-center">
+                                        +3</div>
+                                </div>
+                                <span class="ml-2 truncate text-xs text-slate-500 font-medium">5 Anggota Tim</span>
+                            </div>
+                            <div class="ml-auto flex shrink-0 items-center gap-1.5">
+                                <button
+                                    class="h-9 px-4 rounded-md border border-brand-navy text-brand-navy hover:bg-brand-navyLight font-semibold text-xs transition focus-ring-amber">
+                                    Edit
+                                </button>
+                                <button
+                                    class="w-9 h-9 flex items-center justify-center rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition focus-ring-amber"
+                                    aria-label="Menu opsi">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CARD 4: Add New Project Trigger Card (Dashed Outline) -->
+                <article
+                    id="openProjectWizardCard"
+                    role="button"
+                    tabindex="0"
+                    class="bg-white rounded-xl border-2 border-dashed border-slate-300 hover:border-brand-navy hover:bg-brand-navyLight/30 transition-all duration-200 flex flex-col items-center justify-center p-8 text-center cursor-pointer group min-h-[380px]">
+                    <div
+                        class="w-14 h-14 rounded-full bg-brand-navyLight group-hover:bg-brand-navy text-brand-navy group-hover:text-white flex items-center justify-center transition-colors duration-200 mb-4 shadow-sm">
+                        <svg class="w-7 h-7 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-brand-navy group-hover:text-brand-navyHover">
+                        Tambah Proyek Baru
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-2 max-w-xs leading-relaxed">
+                        Klik di sini untuk menyelamatkan karya perkuliahanmu agar tidak menjadi kuburan proyek.
+                    </p>
+                    <!-- <span
+                        class="mt-5 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-brand-amber hover:bg-brand-amberHover text-brand-navy font-bold text-xs shadow-sm transition">
+                        Mulai Input Portofolio ➔
+                    </span> -->
+                </article>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+        <div
+            class="max-w-[1440px] mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                
+                <span>© 2026 Fakultas Teknologi Informasi, Universitas Sebelas April</span>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: STEPPER FORM WIZARD MODAL (4-STEP OVERLAY MODAL - STEP 2 OF 4) -->
+    <!-- ========================================================================= -->
+    <div id="projectWizard" class="fixed inset-0 z-50 hidden" aria-hidden="true">
+        <div id="projectWizardBackdrop" class="absolute inset-0 bg-brand-navy/60 backdrop-blur-sm"></div>
+        <section
+            class="relative mx-auto flex h-full w-full max-w-3xl items-end justify-center sm:items-center sm:p-6"
+            role="dialog" aria-modal="true" aria-labelledby="wizardTitle">
+            <div class="flex max-h-[92vh] w-full flex-col overflow-hidden bg-white shadow-modal sm:rounded-2xl">
+                <header class="flex items-start justify-between border-b border-slate-200 px-5 py-5 sm:px-8">
+                    <div>
+                        <div class="mb-2 inline-flex items-center gap-2 rounded-full bg-brand-amberLight px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-navy">
+                            <span class="h-1.5 w-1.5 rounded-full bg-brand-amber"></span>
+                            Karya baru
+                        </div>
+                        <h2 id="wizardTitle" class="text-xl font-bold tracking-tight text-brand-navy sm:text-2xl">
+                            Tambahkan proyekmu
+                        </h2>
+                        <p class="mt-1 text-sm text-slate-500">Susun karya akademikmu agar siap dilihat dan divalidasi.</p>
+                    </div>
+                    <button id="closeProjectWizard" type="button"
+                        class="focus-ring-amber -mr-2 -mt-2 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-brand-navy"
+                        aria-label="Tutup formulir">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M18 6L6 18" />
+                        </svg>
+                    </button>
+                </header>
+
+                <div class="border-b border-slate-200 px-5 py-4 sm:px-8">
+                    <ol class="grid grid-cols-4 gap-2" aria-label="Tahapan formulir">
+                        <li class="wizard-step flex items-center gap-2 text-xs font-bold text-brand-navy" data-step-label="1">
+                            <span class="wizard-number flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-navy text-white">1</span>
+                            <span class="hidden sm:block">Dasar</span>
+                        </li>
+                        <li class="wizard-step flex items-center gap-2 text-xs font-semibold text-slate-400" data-step-label="2">
+                            <span class="wizard-number flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100">2</span>
+                            <span class="hidden sm:block">Detail</span>
+                        </li>
+                        <li class="wizard-step flex items-center gap-2 text-xs font-semibold text-slate-400" data-step-label="3">
+                            <span class="wizard-number flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100">3</span>
+                            <span class="hidden sm:block">Tautan</span>
+                        </li>
+                        <li class="wizard-step flex items-center gap-2 text-xs font-semibold text-slate-400" data-step-label="4">
+                            <span class="wizard-number flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100">4</span>
+                            <span class="hidden sm:block">Tinjau</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <form id="projectWizardForm" class="min-h-0 flex-1 overflow-y-auto px-5 py-6 sm:px-8">
+                    <div class="wizard-panel space-y-5" data-step="1">
+                        <div>
+                            <h3 class="text-lg font-bold text-brand-navy">Mulai dari informasi utama</h3>
+                            <p class="mt-1 text-sm text-slate-500">Ceritakan identitas karya yang ingin kamu tampilkan.</p>
+                        </div>
+                        <div class="grid gap-5 sm:grid-cols-2">
+                            <label class="space-y-2 sm:col-span-2">
+                                <span class="text-sm font-bold text-slate-700">Judul proyek <span class="text-red-500">*</span></span>
+                                <input name="projectTitle" required type="text" placeholder="Contoh: FTI Showcase Platform"
+                                    class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                            </label>
+                            <label class="space-y-2">
+                                <span class="text-sm font-bold text-slate-700">Kategori <span class="text-red-500">*</span></span>
+                                <select name="category" required class="wizard-input w-full rounded-md border border-slate-200 bg-white px-3.5 py-3 text-sm text-slate-800 outline-none focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                                    <option value="">Pilih kategori</option><option>Web App</option><option>UI/UX</option><option>Mobile App</option><option>IoT</option><option>Data & AI</option>
+                                </select>
+                            </label>
+                            <label class="space-y-2">
+                                <span class="text-sm font-bold text-slate-700">Semester <span class="text-red-500">*</span></span>
+                                <select name="semester" required class="wizard-input w-full rounded-md border border-slate-200 bg-white px-3.5 py-3 text-sm text-slate-800 outline-none focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                                    <option value="">Pilih semester</option><option>Semester 1</option><option>Semester 2</option><option>Semester 3</option><option>Semester 4</option><option>Semester 5</option><option>Semester 6</option><option>Semester 7</option><option>Semester 8</option>
+                                </select>
+                            </label>
+                            <label class="space-y-2 sm:col-span-2">
+                                <span class="text-sm font-bold text-slate-700">Mata kuliah terkait</span>
+                                <input name="course" type="text" placeholder="Contoh: Rekayasa Perangkat Lunak"
+                                    class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="wizard-panel hidden space-y-5" data-step="2">
+                        <div>
+                            <h3 class="text-lg font-bold text-brand-navy">Buat orang paham nilainya</h3>
+                            <p class="mt-1 text-sm text-slate-500">Deskripsi singkat yang jelas membantu rekruter memahami karyamu.</p>
+                        </div>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-bold text-slate-700">Deskripsi proyek <span class="text-red-500">*</span></span>
+                            <textarea name="description" required rows="6" placeholder="Masalah apa yang diselesaikan? Siapa penggunanya? Apa hasil akhirnya?"
+                                class="wizard-input w-full resize-none rounded-md border border-slate-200 px-3.5 py-3 text-sm leading-6 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20"></textarea>
+                            <span class="block text-xs text-slate-400">Tips: tulis 2–4 kalimat dengan bahasa yang mudah dipindai.</span>
+                        </label>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-bold text-slate-700">Peran kamu <span class="text-red-500">*</span></span>
+                            <input name="role" required type="text" placeholder="Contoh: Frontend Developer"
+                                class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                        </label>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-bold text-slate-700">Tech stack</span>
+                            <input name="techStack" type="text" placeholder="Contoh: React, Laravel, MySQL (pisahkan dengan koma)"
+                                class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                        </label>
+                    </div>
+
+                    <div class="wizard-panel hidden space-y-5" data-step="3">
+                        <div>
+                            <h3 class="text-lg font-bold text-brand-navy">Tambahkan bukti karyamu</h3>
+                            <p class="mt-1 text-sm text-slate-500">Tautan membantu dosen dan rekruter melihat hasil proyek secara langsung.</p>
+                        </div>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-bold text-slate-700">Link repository</span>
+                            <input name="repository" type="url" placeholder="https://github.com/username/repository"
+                                class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                        </label>
+                        <label class="block space-y-2">
+                            <span class="text-sm font-bold text-slate-700">Link demo / Figma</span>
+                            <input name="demo" type="url" placeholder="https://..."
+                                class="wizard-input w-full rounded-md border border-slate-200 px-3.5 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-navy focus:ring-4 focus:ring-brand-amber/20">
+                        </label>
+                        <div class="rounded-lg border border-brand-amberBorder bg-brand-amberLight p-4">
+                            <div class="flex gap-3">
+                                <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-amberDark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20.5a8.5 8.5 0 100-17 8.5 8.5 0 000 17z" />
+                                </svg>
+                                <p class="text-xs leading-5 text-slate-600"><strong class="text-brand-navy">Privasi karya tetap aman.</strong> Pastikan tautan hanya membagikan materi yang memang boleh dilihat publik.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-panel hidden space-y-5" data-step="4">
+                        <div>
+                            <h3 class="text-lg font-bold text-brand-navy">Periksa sebelum diajukan</h3>
+                            <p class="mt-1 text-sm text-slate-500">Kamu masih bisa menyimpan sebagai draf jika belum siap divalidasi.</p>
+                        </div>
+                        <div id="wizardSummary" class="divide-y divide-slate-100 overflow-hidden rounded-lg border border-slate-200 bg-slate-50"></div>
+                        <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-200 p-4 transition hover:border-brand-navy">
+                            <input id="submitForReview" type="checkbox" class="mt-1 h-4 w-4 accent-brand-navy">
+                            <span><span class="block text-sm font-bold text-slate-700">Ajukan untuk validasi dosen</span><span class="mt-1 block text-xs leading-5 text-slate-500">Proyek akan masuk antrean review setelah kamu mengirimkannya.</span></span>
+                        </label>
+                    </div>
+                </form>
+
+                <footer class="flex flex-col-reverse gap-3 border-t border-slate-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+                    <button id="wizardCancel" type="button" class="focus-ring-amber rounded-md px-4 py-2.5 text-sm font-bold text-slate-500 transition hover:bg-slate-100 hover:text-brand-navy">Batal</button>
+                    <div class="flex gap-3">
+                        <button id="wizardBack" type="button" class="focus-ring-amber hidden rounded-md border border-brand-navy px-5 py-2.5 text-sm font-bold text-brand-navy transition hover:bg-brand-navyLight">Kembali</button>
+                        <button id="wizardNext" type="button" class="focus-ring-amber rounded-md bg-brand-navy px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-navyHover">Lanjutkan <span aria-hidden="true">→</span></button>
+                    </div>
+                </footer>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (() => {
+            const wizard = document.getElementById('projectWizard');
+            const form = document.getElementById('projectWizardForm');
+            const panels = [...document.querySelectorAll('.wizard-panel')];
+            const steps = [...document.querySelectorAll('.wizard-step')];
+            const nextButton = document.getElementById('wizardNext');
+            const backButton = document.getElementById('wizardBack');
+            const summary = document.getElementById('wizardSummary');
+            let currentStep = 1;
+
+            const setWizardState = (isOpen) => {
+                wizard.classList.toggle('hidden', !isOpen);
+                wizard.setAttribute('aria-hidden', String(!isOpen));
+                document.body.classList.toggle('overflow-hidden', isOpen);
+                if (isOpen) document.getElementById('projectWizard').querySelector('input')?.focus();
+            };
+
+            const updateStep = () => {
+                panels.forEach((panel) => panel.classList.toggle('hidden', Number(panel.dataset.step) !== currentStep));
+                steps.forEach((step, index) => {
+                    const number = step.querySelector('.wizard-number');
+                    const active = index + 1 <= currentStep;
+                    step.classList.toggle('text-brand-navy', active);
+                    step.classList.toggle('text-slate-400', !active);
+                    number.classList.toggle('bg-brand-navy', active);
+                    number.classList.toggle('text-white', active);
+                    number.classList.toggle('bg-slate-100', !active);
+                });
+                backButton.classList.toggle('hidden', currentStep === 1);
+                nextButton.innerHTML = currentStep === panels.length ? 'Simpan proyek <span aria-hidden="true">✓</span>' : 'Lanjutkan <span aria-hidden="true">→</span>';
+                if (currentStep === 4) {
+                    const data = new FormData(form);
+                    const items = [['Judul proyek', data.get('projectTitle') || 'Belum diisi'], ['Kategori', data.get('category') || 'Belum diisi'], ['Semester', data.get('semester') || 'Belum diisi'], ['Peran', data.get('role') || 'Belum diisi'], ['Tech stack', data.get('techStack') || 'Belum diisi']];
+                    summary.innerHTML = items.map(([label, value]) => `<div class="flex items-start justify-between gap-4 px-4 py-3 text-sm"><span class="text-slate-500">${label}</span><strong class="max-w-[65%] text-right text-brand-navy">${value}</strong></div>`).join('');
+                }
+            };
+
+            const openWizard = () => { currentStep = 1; updateStep(); setWizardState(true); };
+            const closeWizard = () => setWizardState(false);
+
+            document.getElementById('openProjectWizard').addEventListener('click', openWizard);
+            const card = document.getElementById('openProjectWizardCard');
+            card.addEventListener('click', openWizard);
+            card.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openWizard(); } });
+            document.getElementById('closeProjectWizard').addEventListener('click', closeWizard);
+            document.getElementById('wizardCancel').addEventListener('click', closeWizard);
+            document.getElementById('projectWizardBackdrop').addEventListener('click', closeWizard);
+            document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !wizard.classList.contains('hidden')) closeWizard(); });
+            backButton.addEventListener('click', () => { if (currentStep > 1) { currentStep -= 1; updateStep(); } });
+            nextButton.addEventListener('click', () => {
+                if (currentStep < panels.length) {
+                    const fields = [...panels[currentStep - 1].querySelectorAll('input, select, textarea')];
+                    if (!fields.every((field) => field.reportValidity())) return;
+                    currentStep += 1;
+                    updateStep();
+                    form.closest('div').scrollTop = 0;
+                } else {
+                    closeWizard();
+                }
+            });
+        })();
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Showcase - Daftar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0D2137',
+                            navyDark: '#071524',
+                            amber: '#FFA012',
+                            slateBg: '#F8FAFC',
+                            border: '#E2E8F0',
+                            textMain: '#0D2137',
+                            textMuted: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card-float': '0 20px 50px -12px rgba(13, 33, 55, 0.12), 0 8px 24px -8px rgba(13, 33, 55, 0.06)',
+                        'input-focus': '0 0 0 3px rgba(13, 33, 55, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            const isPassword = input.type === 'password';
+
+            input.type = isPassword ? 'text' : 'password';
+            input.classList.toggle('tracking-widest', !isPassword);
+            icon.src = isPassword
+                ? 'Assets/icon/icons8-eye-black.svg'
+                : 'Assets/icon/icons8-invisible-black.svg';
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: #F8FAFC;
+        }
+    </style>
+</head>
+
+<body
+    class="min-h-screen w-full bg-brand-slateBg flex items-center justify-center p-4 sm:p-6 lg:p-10 text-brand-textMain antialiased">
+
+    <!-- Main Floating Split-Card Container -->
+    <main
+        class="w-full max-w-[1080px] bg-white rounded-[24px] shadow-card-float overflow-hidden border border-brand-border/60 flex flex-col md:flex-row min-h-[700px]">
+
+        <!-- Left Hero Panel (45%) -->
+        <section
+            class="w-full md:w-[45%] bg-brand-navy relative flex flex-col justify-between p-8 sm:p-10 lg:p-12 overflow-hidden text-white">
+
+            <!-- Ambient Lighting Radial Glow -->
+            <div
+                class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#FFA012]/20 via-[#FFA012]/5 to-transparent blur-3xl pointer-events-none">
+            </div>
+            <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-sky-500/10 blur-3xl pointer-events-none">
+            </div>
+
+            <!-- Subtle Geometric Backdrop Pattern -->
+            <div class="absolute inset-0 opacity-[0.035] pointer-events-none"
+                style="background-image: radial-gradient(#FFFFFF 1px, transparent 1px); background-size: 24px 24px;">
+            </div>
+
+            <!-- Top-Left Section: Dual Logo Badges -->
+            <div class="relative z-10 flex items-center gap-3">
+                <!-- Badge 1: FTI Geometric Icon Badge -->
+                <div class="w-12 h-12 rounded-[12px] bg-white flex items-center justify-center shadow-md p-2 transition-transform hover:scale-105 duration-200"
+                    title="Logo FTI">
+                    <img src="Assets\img\Logo FTI Showcase.svg" alt="Logo FTI Showcase" class="w-full h-full object-contain">
+                </div>
+
+                <!-- Badge 2: UNSAP Official Crest Badge -->
+                <div class="w-12 h-12 rounded-[12px] bg-white flex items-center justify-center shadow-md p-1.5 transition-transform hover:scale-105 duration-200"
+                    title="Universitas Sebelas April">
+                    <img src="Assets\img\Logo FTI.svg"
+                        alt="Logo Universitas Sebelas April" class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Center Feature Decorative Motif -->
+            <div class="relative z-10 py-10 my-auto hidden md:block">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-medium text-white/90 backdrop-blur-sm mb-4">
+                    Kanal Digital Tugas Akhir Terintegrasi
+                </div>
+                <p class="text-white/70 text-sm leading-relaxed max-w-sm">
+                    Akses repositori karya digital, aplikasi komputasi, dan inovasi teknologi mahasiswa FTI dalam satu
+                    ekosistem akademik.
+                </p>
+            </div>
+
+            <!-- Bottom-Left Content Stack -->
+            <div class="relative z-10 mt-8 md:mt-0 space-y-3">
+                <!-- Sub-headline -->
+                <div class="flex items-center gap-2">
+                    <div class="h-0.5 w-6 bg-brand-amber rounded-full"></div>
+                    <span class="text-xs font-bold uppercase tracking-[1.2px] text-brand-amber">FAKULTAS TEKNOLOGI
+                        INFORMASI</span>
+                </div>
+
+                <!-- Primary Headline -->
+                <h1 class="text-[26px] lg:text-[28px] font-bold text-white leading-[1.3] max-w-md">
+                    Satu Etalase untuk Seluruh Karya Digital Mahasiswa FTI
+                </h1>
+
+                <!-- Academic Accreditation Pill -->
+                <div class="pt-2 flex items-center gap-4 text-xs text-white/60">
+                    <span class="">Teknik Informatika</span>
+                    <span class="">/</span>
+                    <span class="">Sistem Informasi</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Form Workspace (55%) -->
+        <section class="w-full md:w-[55%] bg-white p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
+
+            <div class="w-full max-w-[440px] mx-auto space-y-6">
+
+                <!-- Top Header: Horizontal FTI Showcase Brand Logo -->
+                <header class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center p-1.5">
+                        <img src="Assets\img\Logo FTI Showcase.svg" alt="Logo FTI Showcase" class="w-full h-full object-contain">
+                    </div>
+                    <div class="flex items-baseline">
+                        <span class="text-xl font-extrabold text-brand-navy tracking-tight">FTI</span>
+                        <span class="text-xl font-medium text-brand-navy ml-1.5">Showcase</span>
+                    </div>
+                </header>
+
+                <!-- Form Heading & Subtitle -->
+                <div class="space-y-1.5 pt-2">
+                    <h2 class="text-2xl font-bold text-brand-navy tracking-tight">Buat Akun Baru</h2>
+                    <p class="text-sm text-brand-textMuted leading-relaxed">
+                        Daftar untuk mulai mengelola dan memamerkan proyek akademik Anda.
+                    </p>
+                </div>
+
+                <!-- Authentication Form -->
+                <form class="space-y-4 pt-1" onsubmit="event.preventDefault();">
+
+                    <!-- Field 1: NIM -->
+                    <div class="space-y-1.5">
+                        <label for="NIM"
+                            class="block text-xs font-semibold text-brand-navy uppercase tracking-wider">
+                            NIM
+                        </label>
+                        <div class="relative">
+                            <input type="text" id="NIM" name="NIM" autocomplete="NIM"
+                                placeholder="Masukkan NIM"
+                                class="w-full h-12 px-4 rounded-[8px] border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-textMuted/70 focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 transition duration-150"
+                                required="">
+                        </div>
+                    </div>
+
+                    <!-- Field 2: Nama Lengkap -->
+                    <div class="space-y-1.5">
+                        <label for="fullName"
+                            class="block text-xs font-semibold text-brand-navy uppercase tracking-wider">
+                            NAMA LENGKAP
+                        </label>
+                        <input type="text" id="fullName" name="fullName" autocomplete="name"
+                            placeholder="Masukkan nama lengkap"
+                            class="w-full h-12 px-4 rounded-[8px] border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-textMuted/70 focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 transition duration-150"
+                            required="">
+                    </div>
+
+                    <!-- Field 3: Password with Toggle Eye -->
+                    <div class="space-y-1.5">
+                        <label for="password"
+                            class="block text-xs font-semibold text-brand-navy uppercase tracking-wider">
+                            PASSWORD
+                        </label>
+                        <div class="relative flex items-center">
+                            <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Masukkan kata sandi"
+                                value=""
+                                class="w-full h-12 pl-4 pr-12 rounded-[8px] border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-textMuted/70 tracking-widest focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 transition duration-150"
+                                required="">
+                            <button type="button" id="togglePassword" aria-label="Tampilkan atau sembunyikan kata sandi"
+                                class="absolute right-0 top-0 h-12 w-12 flex items-center justify-center text-brand-textMuted hover:text-brand-navy focus:outline-none transition-colors"
+                                onclick="togglePasswordVisibility('password', 'togglePasswordIcon')">
+                                <img id="togglePasswordIcon" src="Assets/icon/icons8-invisible-black.svg" alt="Toggle Password" class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Field 4: Konfirmasi Password -->
+                    <div class="space-y-1.5">
+                        <label for="confirmPassword"
+                            class="block text-xs font-semibold text-brand-navy uppercase tracking-wider">
+                            KONFIRMASI PASSWORD
+                        </label>
+                        <div class="relative flex items-center">
+                            <input type="password" id="confirmPassword" name="confirmPassword"
+                                autocomplete="new-password" placeholder="Ulangi kata sandi"
+                                class="w-full h-12 pl-4 pr-12 rounded-[8px] border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-textMuted/70 tracking-widest focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-navy/10 transition duration-150"
+                                required="">
+                            <button type="button" id="toggleConfirmPassword"
+                                aria-label="Tampilkan atau sembunyikan konfirmasi kata sandi"
+                                class="absolute right-0 top-0 h-12 w-12 flex items-center justify-center text-brand-textMuted hover:text-brand-navy focus:outline-none transition-colors"
+                                onclick="togglePasswordVisibility('confirmPassword', 'toggleConfirmPasswordIcon')">
+                                <img id="toggleConfirmPasswordIcon" src="Assets/icon/icons8-invisible-black.svg"
+                                    alt="Toggle Konfirmasi Password"
+                                    class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Primary CTA Button: Daftar -->
+                    <button type="submit"
+                        class="w-full h-12 rounded-[8px] bg-brand-navy hover:bg-[#142f4c] active:bg-[#071524] text-white text-sm font-semibold tracking-wide shadow-sm hover:shadow transition-all duration-150 flex items-center justify-center cursor-pointer">
+                        Daftar
+                    </button>
+                </form>
+
+                <!-- Horizontal Divider -->
+                <div class="relative my-5">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-brand-border"></div>
+                    </div>
+                    <div class="relative flex justify-center text-xs">
+                        <span class="bg-white px-3 text-brand-textMuted font-medium">
+                            atau daftar menggunakan
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Single SSO Google Button -->
+                <div class="space-y-2">
+                    <button type="button"
+                        class="w-full h-12 rounded-[8px] border border-brand-border bg-white hover:bg-slate-50 active:bg-slate-100 text-brand-navy text-sm font-semibold shadow-sm transition-all duration-150 flex items-center justify-center gap-3 cursor-pointer group">
+                        <!-- Google Colored 'G' SVG Logo -->
+                        <svg class="w-5 h-5 transition-transform group-hover:scale-105 duration-150" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                fill="#4285F4"></path>
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853"></path>
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                                fill="#FBBC05"></path>
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                                fill="#EA4335"></path>
+                        </svg>
+                        <span class="">Daftar menggunakan Google Kampus</span>
+                    </button>
+
+                    <!-- Microcopy Notice -->
+                    <p class="text-center text-xs text-brand-textMuted leading-tight pt-1">
+                        Khusus akun <span class="font-medium text-brand-navy">@unsap.ac.id</span> dan <span
+                            class="font-medium text-brand-navy">@student.unsap.ac.id</span>.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer Line -->
+            <footer class="w-full text-center pt-8 border-t border-brand-border/40 mt-6 text-sm text-brand-textMuted">
+                Sudah memiliki akun?
+                <a href="{{ route('login-page') }}" class="font-bold text-brand-navy hover:text-brand-amber transition-colors ml-1">
+                    Masuk
+                </a>
+            </footer>
+
+        </section>
+
+    </main>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

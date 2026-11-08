@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Showcase - Pengaturan Akun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0D213D',
+                            navyHover: '#18355D',
+                            navyLight: '#F2F5F9',
+                            amber: '#FFA719',
+                            amberLight: '#FFF9EE',
+                            amberHover: '#E08E00'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+                    },
+                    boxShadow: {
+                        card: '0px 4px 6px -1px rgba(13, 33, 61, 0.08), 0px 2px 4px -2px rgba(13, 33, 61, 0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .focus-ring-amber:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px #FFA719;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm">
+        <div class="mx-auto flex h-[72px] w-full max-w-[1440px] items-center justify-between px-4 sm:px-6">
+            <a href="dashboard-mahasiswa.html" class="flex items-center gap-3">
+                <img src="Assets/img/Logo FTI Showcase.svg" alt="Logo FTI Showcase" class="h-8 w-8">
+                <span>
+                    <span class="block text-lg font-extrabold tracking-tight text-brand-navy">FTI Showcase</span>
+                    <span class="block text-[10px] font-medium text-slate-500">Universitas Sebelas April</span>
+                </span>
+            </a>
+            <a href="dashboard-mahasiswa.html"
+                class="focus-ring-amber inline-flex min-h-10 items-center gap-2 rounded-md border border-brand-navy px-3.5 py-2 text-xs font-bold text-brand-navy transition hover:bg-brand-navyLight">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="hidden sm:inline">Kembali ke Dashboard</span>
+                <span class="sm:hidden">Dashboard</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="mx-auto flex w-full max-w-[1180px] flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
+        <section>
+            <p class="text-xs font-bold uppercase tracking-widest text-brand-amber">Akun Mahasiswa</p>
+            <h1 class="mt-2 text-2xl font-bold tracking-tight text-brand-navy sm:text-3xl">Pengaturan Akun</h1>
+            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                Kelola informasi akun, keamanan, notifikasi, dan bagaimana profilmu tampil di FTI Showcase.
+            </p>
+        </section>
+
+        <div class="flex min-w-0 flex-col gap-6">
+                <section id="profil-akun" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <div class="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-center">
+                        <div class="relative h-20 w-20 shrink-0">
+                            <div id="profile-avatar"
+                                class="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-brand-navy text-xl font-extrabold text-brand-amber ring-4 ring-brand-navyLight">
+                                <span id="avatar-initials">K2</span>
+                                <img id="avatar-preview" src="" alt="Foto profil Kelompok 2" class="hidden h-full w-full object-cover">
+                            </div>
+                            <label for="profile-photo"
+                                class="focus-ring-amber absolute bottom-0 right-0 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-brand-amber text-brand-navy shadow-sm transition hover:bg-brand-amberHover"
+                                title="Ubah foto profil" aria-label="Ubah foto profil">
+                                <img src="Assets/icon/icons8-camera.svg" alt="Ikon kamera" class="h-4 w-4">
+                            </label>
+                            <input id="profile-photo" type="file" accept="image/jpeg,image/png,image/webp" class="sr-only">
+                        </div>
+                        <div class="min-w-0">
+                            <h2 class="text-lg font-bold text-brand-navy">Profil Akun</h2>
+                            <p class="mt-1 text-xs text-slate-500">Informasi identitas akademik dikelola oleh sistem kampus.</p>
+                            <p id="photo-status" class="mt-2 text-[11px] font-medium text-slate-400">JPG, PNG, atau WEBP · Maks. 5 MB</p>
+                        </div>
+                        <span class="sm:ml-auto inline-flex w-fit items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Terverifikasi
+                        </span>
+                    </div>
+                    <div id="photo-actions" class="mt-3 hidden items-center gap-3">
+                        <button id="remove-profile-photo" type="button" class="text-xs font-bold text-red-600 hover:text-red-700">Hapus foto</button>
+                        <span id="photo-feedback" class="text-[11px] text-emerald-600">Foto siap disimpan</span>
+                    </div>
+                    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <label class="text-xs font-semibold text-slate-600">Nama Lengkap
+                            <input value="Kelompok 2" readonly class="mt-2 h-11 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-700">
+                        </label>
+                        <label class="text-xs font-semibold text-slate-600">NIM
+                            <input value="240160121041" readonly class="mt-2 h-11 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-700">
+                        </label>
+                        <label class="text-xs font-semibold text-slate-600">Program Studi
+                            <input value="S1 Teknik Informatika" readonly class="mt-2 h-11 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-700">
+                        </label>
+                        <label class="text-xs font-semibold text-slate-600">Role
+                            <input value="Mahasiswa" type="role" class="focus-ring-amber mt-2 h-11 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-700">
+                        </label>
+                    </div>
+                    <div class="mt-5 flex justify-end">
+                        <button class="focus-ring-amber min-h-10 rounded-md bg-brand-navy px-4 py-2 text-xs font-bold text-white transition hover:bg-brand-navyHover">Simpan Perubahan</button>
+                    </div>
+                </section>
+
+                <section id="integrasi" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <div class="flex flex-col gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start sm:justify-between">
+                        <div class="flex items-start gap-3">
+                            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+                                <img src="Assets/icon/icons8-google.svg" alt="Logo Google" class="h-6 w-6">
+                            </span>
+                            <div>
+                                <h2 class="text-lg font-bold text-brand-navy">Akun Terintegrasi</h2>
+                                <p class="mt-1 text-xs leading-5 text-slate-500">Hubungkan akun Google Kampus untuk akses masuk yang lebih cepat dan aman.</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Terhubung
+                        </span>
+                    </div>
+                    <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50/60 p-4">
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div class="flex min-w-0 items-center gap-3">
+                                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold text-brand-navy ring-2 ring-emerald-100">SS</span>
+                                <div class="min-w-0">
+                                    <p class="truncate text-sm font-bold text-slate-700">Kelompok 2</p>
+                                    <p class="truncate text-xs text-slate-500">kelompok2@student.unsap.ac.id</p>
+                                </div>
+                            </div>
+                            <button class="focus-ring-amber min-h-10 shrink-0 rounded-md border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50">
+                                Kelola Akun Google
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-5 grid grid-cols-1 gap-3 text-xs sm:grid-cols-2">
+                        <div class="rounded-lg border border-slate-200 p-3">
+                            <p class="font-bold text-slate-700">Login sekali klik</p>
+                            <p class="mt-1 leading-5 text-slate-500">Masuk menggunakan akun Google Kampus tanpa mengetik ulang sandi.</p>
+                        </div>
+                        <div class="rounded-lg border border-slate-200 p-3">
+                            <p class="font-bold text-slate-700">Sinkronisasi identitas</p>
+                            <p class="mt-1 leading-5 text-slate-500">Nama dan email akademik mengikuti data resmi kampus.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex flex-col gap-3 border-t border-slate-100 pt-4 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                        <span>Terakhir disinkronkan: 1 November 2026, 09.42 WIB</span>
+                        
+                    </div>
+                </section>
+
+                <section id="keamanan" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <h2 class="text-lg font-bold text-brand-navy">Keamanan Akun</h2>
+                    <p class="mt-1 text-xs text-slate-500">Lindungi akun dan sesi masukmu.</p>
+                    <div class="mt-5 divide-y divide-slate-100">
+                        <div class="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-slate-700">Kata sandi</p>
+                                <p class="mt-1 text-xs text-slate-500">Terakhir diperbarui 30 hari lalu.</p>
+                            </div>
+                            <button id="open-password-modal" class="focus-ring-amber min-h-10 rounded-md border border-brand-navy px-4 py-2 text-xs font-bold text-brand-navy hover:bg-brand-navyLight">Ubah Kata Sandi</button>
+                        </div>
+                        
+                        <div class="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-slate-700">Sesi aktif</p>
+                                <p class="mt-1 text-xs text-slate-500">iPhone 16 · Aktif sekarang</p>
+                            </div>
+                            <button class="text-left text-xs font-bold text-red-600 hover:text-red-700 sm:text-right">Keluar dari semua perangkat</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="notifikasi" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <h2 class="text-lg font-bold text-brand-navy">Notifikasi</h2>
+                    <p class="mt-1 text-xs text-slate-500">Pilih pembaruan yang ingin kamu terima.</p>
+                    <div class="mt-5 divide-y divide-slate-100">
+                        <label class="flex cursor-pointer items-start justify-between gap-4 py-4">
+                            <span><span class="block text-sm font-bold text-slate-700">Validasi proyek</span><span class="mt-1 block text-xs leading-5 text-slate-500">Notifikasi saat dosen menyetujui atau menolak karya.</span></span>
+                            <input type="checkbox" checked class="mt-1 h-4 w-4 accent-[#0D213D]">
+                        </label>
+                        <label class="flex cursor-pointer items-start justify-between gap-4 py-4">
+                            <span><span class="block text-sm font-bold text-slate-700">Masukan dosen</span><span class="mt-1 block text-xs leading-5 text-slate-500">Komentar dan permintaan revisi pada proyekmu.</span></span>
+                            <input type="checkbox" checked class="mt-1 h-4 w-4 accent-[#0D213D]">
+                        </label>
+                        <label class="flex cursor-pointer items-start justify-between gap-4 py-4">
+                            <span><span class="block text-sm font-bold text-slate-700">Aktivitas kolaborasi</span><span class="mt-1 block text-xs leading-5 text-slate-500">Undangan tim dan perubahan anggota proyek.</span></span>
+                            <input type="checkbox" checked class="mt-1 h-4 w-4 accent-[#0D213D]">
+                        </label>
+                    </div>
+                </section>
+
+                <section id="privasi" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <h2 class="text-lg font-bold text-brand-navy">Privasi Portofolio</h2>
+                    <p class="mt-1 text-xs text-slate-500">Atur bagaimana karya dan profilmu terlihat oleh pengguna lain.</p>
+                    <label class="mt-5 flex cursor-pointer items-start justify-between gap-4">
+                        <span><span class="block text-sm font-bold text-slate-700">Profil dapat ditemukan publik</span><span class="mt-1 block text-xs leading-5 text-slate-500">Profil muncul di Explore Hub dan dapat dibagikan melalui tautan.</span></span>
+                        <input type="checkbox" checked class="mt-1 h-4 w-4 accent-[#0D213D]">
+                    </label>
+                    <label class="mt-4 flex cursor-pointer items-start justify-between gap-4">
+                        <span><span class="block text-sm font-bold text-slate-700">Tampilkan statistik karya</span><span class="mt-1 block text-xs leading-5 text-slate-500">Jumlah karya, validasi, dan kolaborasi terlihat di profil.</span></span>
+                        <input type="checkbox" checked class="mt-1 h-4 w-4 accent-[#0D213D]">
+                    </label>
+                </section>
+
+                <!-- <section id="preferensi" class="scroll-mt-24 rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <h2 class="text-lg font-bold text-brand-navy">Preferensi</h2>
+                    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <label class="text-xs font-semibold text-slate-600">Bahasa
+                            <select class="mt-2 h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 focus:border-brand-navy focus:outline-none">
+                                <option>Bahasa Indonesia</option>
+                                <option>English</option>
+                            </select>
+                        </label>
+                        <label class="text-xs font-semibold text-slate-600">Tema
+                            <select class="mt-2 h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 focus:border-brand-navy focus:outline-none">
+                                <option>Terang</option>
+                                <option>Ikuti sistem</option>
+                            </select>
+                        </label>
+                    </div>
+                </section> -->
+
+                
+            </div>
+    </main>
+
+    <div id="password-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-brand-navy/60 p-4 backdrop-blur-sm"
+        role="dialog" aria-modal="true" aria-labelledby="password-modal-title">
+        <div class="max-h-[calc(100vh-2rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl">
+            <div class="flex items-start justify-between border-b border-slate-100 px-5 py-5 sm:px-7">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-brand-amber">Keamanan Akun</p>
+                    <h2 id="password-modal-title" class="mt-1 text-xl font-bold text-brand-navy">Ubah Kata Sandi</h2>
+                    <p id="password-step-description" class="mt-1 text-xs leading-5 text-slate-500">
+                        Verifikasi emailmu sebelum membuat kata sandi baru.
+                    </p>
+                </div>
+                <button id="close-password-modal" class="focus-ring-amber rounded-md p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                    aria-label="Tutup ubah kata sandi">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="px-5 py-5 sm:px-7">
+                <div class="mb-6 flex items-center gap-2">
+                    <div id="step-one-indicator" class="flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy text-xs font-bold text-white">1</div>
+                    <div class="h-px flex-1 bg-slate-200"></div>
+                    <div id="step-two-indicator" class="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-400">2</div>
+                </div>
+
+                <div id="verification-step">
+                    <div class="rounded-xl border border-brand-navyBorder bg-brand-navyLight p-4">
+                        <div class="flex gap-3">
+                            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand-navy shadow-sm">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class="text-xs font-bold text-brand-navy">Kode verifikasi dikirim ke email akademik</p>
+                                <p class="mt-1 text-xs text-slate-600">s•••••n@student.unsap.ac.id</p>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="mt-5 block text-xs font-semibold text-slate-600" for="verification-code">
+                        Masukkan kode 6 digit
+                        <input id="verification-code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"
+                            placeholder="000000"
+                            class="focus-ring-amber mt-2 h-12 w-full rounded-md border border-slate-200 px-4 text-center text-lg font-bold tracking-[0.5em] text-brand-navy placeholder:tracking-[0.5em] placeholder:text-slate-300">
+                    </label>
+                    <p id="verification-message" class="mt-2 hidden text-xs font-medium text-red-600" role="alert"></p>
+                    <div class="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <button id="resend-code" class="text-left text-xs font-bold text-brand-navy hover:text-brand-navyHover disabled:cursor-not-allowed disabled:text-slate-400" disabled>
+                            Kirim ulang kode <span id="resend-countdown" class="font-medium text-slate-400">(03:00)</span>
+                        </button>
+                        <button id="verify-code" class="focus-ring-amber min-h-11 rounded-md bg-brand-navy px-5 py-2.5 text-xs font-bold text-white hover:bg-brand-navyHover">Verifikasi Kode</button>
+                    </div>
+                    <p class="mt-4 text-center text-[11px] leading-5 text-slate-400">Kode berlaku selama 10 menit. Jangan bagikan kode ini kepada siapa pun.</p>
+                </div>
+
+                <div id="new-password-step" class="hidden">
+                    <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-xs leading-5 text-emerald-800">
+                        Email berhasil diverifikasi. Buat kata sandi baru yang kuat dan belum pernah digunakan.
+                    </div>
+                    <label class="mt-5 block text-xs font-semibold text-slate-600" for="new-password">
+                        Kata sandi baru
+                        <input id="new-password" type="password" autocomplete="new-password"
+                            placeholder="Masukkan kata sandi baru"
+                            class="focus-ring-amber mt-2 h-11 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-700">
+                    </label>
+                    <div class="mt-3 space-y-2 rounded-lg bg-slate-50 p-3 text-[11px] text-slate-500">
+                        <p class="font-bold text-slate-700">Gunakan minimal:</p>
+                        <p id="rule-length">• 8 karakter</p>
+                        <p id="rule-case">• 1 huruf besar dan 1 huruf kecil</p>
+                        <p id="rule-number">• 1 angka atau simbol</p>
+                    </div>
+                    <label class="mt-4 block text-xs font-semibold text-slate-600" for="confirm-password">
+                        Konfirmasi kata sandi baru
+                        <input id="confirm-password" type="password" autocomplete="new-password"
+                            placeholder="Ulangi kata sandi baru"
+                            class="focus-ring-amber mt-2 h-11 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-700">
+                    </label>
+                    <p id="password-message" class="mt-2 hidden text-xs font-medium text-red-600" role="alert"></p>
+                    <div class="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                        <button id="back-to-verification" class="min-h-11 rounded-md border border-slate-200 px-4 py-2.5 text-xs font-bold text-slate-600 hover:bg-slate-50">Kembali</button>
+                        <button id="save-password" class="focus-ring-amber min-h-11 rounded-md bg-brand-navy px-5 py-2.5 text-xs font-bold text-white hover:bg-brand-navyHover">Simpan Kata Sandi</button>
+                    </div>
+                </div>
+
+                <div id="password-success" class="hidden py-5 text-center">
+                    <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3 class="mt-4 text-lg font-bold text-brand-navy">Kata sandi berhasil diubah</h3>
+                    <p class="mx-auto mt-2 max-w-xs text-xs leading-5 text-slate-500">Gunakan kata sandi baru saat masuk berikutnya. Sesi di perangkat lain akan ditutup demi keamanan.</p>
+                    <button id="finish-password" class="focus-ring-amber mt-5 min-h-11 rounded-md bg-brand-navy px-6 py-2.5 text-xs font-bold text-white hover:bg-brand-navyHover">Selesai</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-8 border-t border-slate-200 bg-white py-6">
+        <p class="px-4 text-center text-xs text-slate-500">© 2026 Fakultas Teknologi Informasi, Universitas Sebelas April</p>
+    </footer>
+    <script>
+        const modal = document.getElementById('password-modal');
+        const verificationStep = document.getElementById('verification-step');
+        const newPasswordStep = document.getElementById('new-password-step');
+        const successStep = document.getElementById('password-success');
+        const verificationMessage = document.getElementById('verification-message');
+        const passwordMessage = document.getElementById('password-message');
+        const resendButton = document.getElementById('resend-code');
+        const resendCountdown = document.getElementById('resend-countdown');
+        let resendTimer;
+        let resendSeconds = 180;
+
+        function setStepIndicators(isPasswordStep) {
+            const stepOne = document.getElementById('step-one-indicator');
+            const stepTwo = document.getElementById('step-two-indicator');
+            if (isPasswordStep) {
+                stepOne.className = 'flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white';
+                stepTwo.className = 'flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white';
+                return;
+            }
+            stepOne.className = 'flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy text-xs font-bold text-white';
+            stepTwo.className = 'flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-400';
+        }
+
+        function updateResendCountdown() {
+            const minutes = String(Math.floor(resendSeconds / 60)).padStart(2, '0');
+            const seconds = String(resendSeconds % 60).padStart(2, '0');
+            resendCountdown.textContent = `(${minutes}:${seconds})`;
+        }
+
+        function startResendTimer() {
+            window.clearInterval(resendTimer);
+            resendSeconds = 180;
+            resendButton.disabled = true;
+            resendButton.firstChild.textContent = 'Kirim ulang kode ';
+            resendButton.classList.remove('text-emerald-600');
+            updateResendCountdown();
+            resendTimer = window.setInterval(() => {
+                resendSeconds -= 1;
+                updateResendCountdown();
+                if (resendSeconds <= 0) {
+                    window.clearInterval(resendTimer);
+                    resendButton.disabled = false;
+                    resendButton.firstChild.textContent = 'Kirim ulang kode ';
+                    resendCountdown.textContent = '';
+                }
+            }, 1000);
+        }
+
+        function resetPasswordFlow() {
+            verificationStep.classList.remove('hidden');
+            newPasswordStep.classList.add('hidden');
+            successStep.classList.add('hidden');
+            document.getElementById('verification-code').value = '';
+            document.getElementById('new-password').value = '';
+            document.getElementById('confirm-password').value = '';
+            verificationMessage.classList.add('hidden');
+            passwordMessage.classList.add('hidden');
+            setStepIndicators(false);
+            startResendTimer();
+        }
+
+        document.getElementById('open-password-modal').addEventListener('click', () => {
+            resetPasswordFlow();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('verification-code').focus();
+        });
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('close-password-modal').addEventListener('click', closeModal);
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) closeModal();
+        });
+
+        document.getElementById('verify-code').addEventListener('click', () => {
+            const code = document.getElementById('verification-code').value.trim();
+            if (!/^\d{6}$/.test(code)) {
+                verificationMessage.textContent = 'Masukkan kode verifikasi 6 digit.';
+                verificationMessage.classList.remove('hidden');
+                return;
+            }
+            verificationMessage.classList.add('hidden');
+            verificationStep.classList.add('hidden');
+            newPasswordStep.classList.remove('hidden');
+            setStepIndicators(true);
+            document.getElementById('password-modal-title').textContent = 'Buat Kata Sandi Baru';
+            document.getElementById('password-step-description').textContent = 'Gunakan kombinasi yang kuat untuk menjaga akun tetap aman.';
+            document.getElementById('new-password').focus();
+        });
+
+        document.getElementById('back-to-verification').addEventListener('click', () => {
+            newPasswordStep.classList.add('hidden');
+            verificationStep.classList.remove('hidden');
+            setStepIndicators(false);
+            document.getElementById('password-modal-title').textContent = 'Ubah Kata Sandi';
+            document.getElementById('password-step-description').textContent = 'Verifikasi emailmu sebelum membuat kata sandi baru.';
+        });
+
+        document.getElementById('save-password').addEventListener('click', () => {
+            const password = document.getElementById('new-password').value;
+            const confirmation = document.getElementById('confirm-password').value;
+            const strongPassword = password.length >= 8 && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[\d\W]/.test(password);
+            if (!strongPassword) {
+                passwordMessage.textContent = 'Kata sandi belum memenuhi semua aturan keamanan.';
+                passwordMessage.classList.remove('hidden');
+                return;
+            }
+            if (password !== confirmation) {
+                passwordMessage.textContent = 'Konfirmasi kata sandi tidak sama.';
+                passwordMessage.classList.remove('hidden');
+                return;
+            }
+            newPasswordStep.classList.add('hidden');
+            successStep.classList.remove('hidden');
+            document.getElementById('password-modal-title').textContent = 'Selesai';
+            document.getElementById('password-step-description').textContent = 'Perubahan keamanan akun berhasil disimpan.';
+        });
+
+        document.getElementById('finish-password').addEventListener('click', closeModal);
+        resendButton.addEventListener('click', () => {
+            resendButton.firstChild.textContent = 'Kode baru telah dikirim ';
+            resendButton.classList.add('text-emerald-600');
+            startResendTimer();
+        });
+
+        const profilePhotoInput = document.getElementById('profile-photo');
+        const avatarPreview = document.getElementById('avatar-preview');
+        const avatarInitials = document.getElementById('avatar-initials');
+        const photoActions = document.getElementById('photo-actions');
+        const photoStatus = document.getElementById('photo-status');
+        let profilePhotoUrl = '';
+
+        profilePhotoInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                photoStatus.textContent = 'Format tidak didukung. Pilih JPG, PNG, atau WEBP.';
+                photoStatus.className = 'mt-2 text-[11px] font-medium text-red-600';
+                profilePhotoInput.value = '';
+                return;
+            }
+            if (file.size > 5 * 1024 * 1024) {
+                photoStatus.textContent = 'Ukuran foto terlalu besar. Maksimal 5 MB.';
+                photoStatus.className = 'mt-2 text-[11px] font-medium text-red-600';
+                profilePhotoInput.value = '';
+                return;
+            }
+            if (profilePhotoUrl) URL.revokeObjectURL(profilePhotoUrl);
+            profilePhotoUrl = URL.createObjectURL(file);
+            avatarPreview.src = profilePhotoUrl;
+            avatarPreview.classList.remove('hidden');
+            avatarInitials.classList.add('hidden');
+            photoActions.classList.remove('hidden');
+            photoActions.classList.add('flex');
+            photoStatus.textContent = 'Foto baru dipilih. Klik Simpan Perubahan untuk menerapkan.';
+            photoStatus.className = 'mt-2 text-[11px] font-medium text-emerald-600';
+        });
+
+        document.getElementById('remove-profile-photo').addEventListener('click', () => {
+            if (profilePhotoUrl) URL.revokeObjectURL(profilePhotoUrl);
+            profilePhotoUrl = '';
+            avatarPreview.src = '';
+            avatarPreview.classList.add('hidden');
+            avatarInitials.classList.remove('hidden');
+            photoActions.classList.add('hidden');
+            photoActions.classList.remove('flex');
+            photoStatus.textContent = 'JPG, PNG, atau WEBP · Maks. 5 MB';
+            photoStatus.className = 'mt-2 text-[11px] font-medium text-slate-400';
+            profilePhotoInput.value = '';
+        });
+    </script>
+</body>
+
+</html>

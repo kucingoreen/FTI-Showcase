@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Showcase - Profil Kelompok 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0D213D',
+                            navyHover: '#18355D',
+                            navyLight: '#F2F5F9',
+                            amber: '#FFA719',
+                            amberHover: '#E08E00'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif']
+                    },
+                    boxShadow: {
+                        card: '0px 4px 6px -1px rgba(13, 33, 61, 0.08), 0px 2px 4px -2px rgba(13, 33, 61, 0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .focus-ring-amber:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px #FFA719;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm">
+        <div class="mx-auto flex h-[72px] w-full max-w-[1440px] items-center justify-between px-4 sm:px-6">
+            <a href="dashboard-mahasiswa.html" class="flex items-center gap-3">
+                <img src="Assets/img/Logo FTI Showcase.svg" alt="Logo FTI Showcase" class="h-8 w-8">
+                <span>
+                    <span class="block text-lg font-extrabold tracking-tight text-brand-navy">FTI Showcase</span>
+                    <span class="block text-[10px] font-medium text-slate-500">Universitas Sebelas April</span>
+                </span>
+            </a>
+            <a href="dashboard-mahasiswa.html"
+                class="focus-ring-amber inline-flex min-h-10 items-center gap-2 rounded-md border border-brand-navy px-3.5 py-2 text-xs font-bold text-brand-navy transition hover:bg-brand-navyLight">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span class="hidden sm:inline">Kembali ke Dashboard</span>
+                <span class="sm:hidden">Dashboard</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="mx-auto flex w-full max-w-[1180px] flex-col gap-6 px-4 py-6 sm:px-6 sm:py-8">
+        <section class="relative overflow-hidden rounded-2xl bg-brand-navy p-5 text-white shadow-card sm:p-8">
+            <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-white/5"></div>
+            <div class="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+                    <div class="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white/20 bg-white text-3xl font-extrabold text-brand-navy shadow-lg">
+                        K2
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">Kelompok 2</h1>
+                            <span class="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800">
+                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                                Profil Terverifikasi
+                            </span>
+                        </div>
+                        <p class="mt-2 text-sm font-medium text-slate-300">Mahasiswa S1 Teknik Informatika</p>
+                        <p class="mt-1 text-xs text-slate-400">NIM 240160121041</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#proyek" class="inline-flex min-h-10 items-center justify-center rounded-md bg-brand-amber px-4 py-2 text-xs font-bold text-brand-navy transition hover:bg-brand-amberHover">
+                        Lihat Karya
+                    </a>
+                    <button class="focus-ring-amber inline-flex min-h-10 items-center justify-center rounded-md border border-white/40 px-4 py-2 text-xs font-bold text-white transition hover:bg-white/10">
+                        Bagikan Profil
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div class="flex min-w-0 flex-col gap-6">
+                <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <h2 class="text-xl font-bold tracking-tight text-brand-navy">Tentang Saya</h2>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">
+                        Mahasiswa Teknik Informatika yang berfokus pada pengembangan produk digital, desain antarmuka,
+                        dan solusi teknologi untuk kebutuhan akademik. Saya senang bekerja lintas disiplin untuk
+                        mengubah masalah menjadi pengalaman digital yang sederhana dan bermanfaat.
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="rounded-full bg-brand-navyLight px-3 py-1.5 text-xs font-semibold text-brand-navy">UI/UX Design</span>
+                        <span class="rounded-full bg-brand-navyLight px-3 py-1.5 text-xs font-semibold text-brand-navy">Frontend Development</span>
+                        <span class="rounded-full bg-brand-navyLight px-3 py-1.5 text-xs font-semibold text-brand-navy">Product Thinking</span>
+                    </div>
+                </section>
+
+                <section id="proyek" class="rounded-xl border border-slate-200 bg-white p-5 shadow-card sm:p-6">
+                    <div class="flex items-center justify-between gap-3">
+                        <div>
+                            <h2 class="text-xl font-bold tracking-tight text-brand-navy">Karya Terpilih</h2>
+                            <p class="mt-1 text-xs text-slate-500">Proyek yang sudah dipublikasikan dan tervalidasi.</p>
+                        </div>
+                        <span class="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700">2 Proyek</span>
+                    </div>
+                    <div class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <article class="rounded-lg border border-slate-200 p-4 transition hover:border-brand-navy hover:shadow-sm">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="rounded bg-brand-navyLight px-2 py-1 text-[10px] font-bold text-brand-navy">UI/UX · Sem. 7</span>
+                                <span class="text-[10px] font-bold text-emerald-600">Terverifikasi</span>
+                            </div>
+                            <h3 class="mt-4 text-base font-bold text-brand-navy">FTI Showcase Platform</h3>
+                            <p class="mt-2 line-clamp-3 text-xs leading-5 text-slate-600">Platform katalog portofolio akademik untuk menampilkan karya mahasiswa FTI secara terstruktur.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600">Figma</span>
+                                <span class="rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600">Tailwind CSS</span>
+                            </div>
+                        </article>
+                        <article class="rounded-lg border border-slate-200 p-4 transition hover:border-brand-navy hover:shadow-sm">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="rounded bg-brand-navyLight px-2 py-1 text-[10px] font-bold text-brand-navy">RPL · Sem. 5</span>
+                                <span class="text-[10px] font-bold text-emerald-600">Terverifikasi</span>
+                            </div>
+                            <h3 class="mt-4 text-base font-bold text-brand-navy">Smart Campus Dashboard</h3>
+                            <p class="mt-2 line-clamp-3 text-xs leading-5 text-slate-600">Dashboard pemantauan fasilitas kampus dengan data real-time untuk layanan akademik.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600">React</span>
+                                <span class="rounded bg-slate-100 px-2 py-1 text-[10px] font-medium text-slate-600">Laravel</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="flex min-w-0 flex-col gap-6">
+                <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-card">
+                    <h2 class="text-base font-bold text-brand-navy">Ringkasan Aktivitas</h2>
+                    <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+                        <div class="rounded-lg bg-brand-navyLight p-3">
+                            <strong class="block text-xl text-brand-navy">8</strong>
+                            <span class="mt-1 block text-[10px] font-medium text-slate-500">Total Karya</span>
+                        </div>
+                        <div class="rounded-lg bg-emerald-50 p-3">
+                            <strong class="block text-xl text-emerald-700">6</strong>
+                            <span class="mt-1 block text-[10px] font-medium text-slate-500">Terverifikasi</span>
+                        </div>
+                        <div class="rounded-lg bg-brand-amberLight p-3">
+                            <strong class="block text-xl text-brand-amberDark">3</strong>
+                            <span class="mt-1 block text-[10px] font-medium text-slate-500">Kolaborasi</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-card">
+                    <h2 class="text-base font-bold text-brand-navy">Informasi Akademik</h2>
+                    <dl class="mt-4 space-y-3 text-xs">
+                        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
+                            <dt class="text-slate-500">Program Studi</dt>
+                            <dd class="text-right font-semibold text-slate-700">S1 Teknik Informatika</dd>
+                        </div>
+                        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
+                            <dt class="text-slate-500">Semester Aktif</dt>
+                            <dd class="font-semibold text-slate-700">7</dd>
+                        </div>
+                        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
+                            <dt class="text-slate-500">Dosen Wali</dt>
+                            <dd class="text-right font-semibold text-slate-700">Dr. Rina Kurniawati</dd>
+                        </div>
+                        <div class="flex items-start justify-between gap-4">
+                            <dt class="text-slate-500">Bergabung</dt>
+                            <dd class="font-semibold text-slate-700">September 2024</dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="rounded-xl border border-slate-200 bg-white p-5 shadow-card">
+                    <h2 class="text-base font-bold text-brand-navy">Keahlian</h2>
+                    <div class="mt-4 space-y-3">
+                        <div>
+                            <div class="flex justify-between text-[11px] font-semibold text-slate-600"><span>UI/UX Design</span><span>85%</span></div>
+                            <div class="mt-1.5 h-1.5 rounded-full bg-slate-100"><div class="h-full w-[85%] rounded-full bg-brand-amber"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[11px] font-semibold text-slate-600"><span>Frontend</span><span>78%</span></div>
+                            <div class="mt-1.5 h-1.5 rounded-full bg-slate-100"><div class="h-full w-[78%] rounded-full bg-brand-navy"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[11px] font-semibold text-slate-600"><span>Prototyping</span><span>82%</span></div>
+                            <div class="mt-1.5 h-1.5 rounded-full bg-slate-100"><div class="h-full w-[82%] rounded-full bg-emerald-500"></div></div>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="mt-8 border-t border-slate-200 bg-white py-6">
+        <p class="px-4 text-center text-xs text-slate-500">© 2026 Fakultas Teknologi Informasi, Universitas Sebelas April</p>
+    </footer>
+</body>
+
+</html>

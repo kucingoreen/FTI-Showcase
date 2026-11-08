@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="web_standard" name="shell-type" />
+    <title>FTI Showcase - UNIVERSITAS SEBELAS APRIL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        @layer base {
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                overscroll-behavior: none;
+            }
+
+            main>:first-child {
+                margin-top: 0 !important;
+            }
+
+            main>:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Smooth animations and keyframes */
+        @keyframes floatGentle {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(0.4deg);
+            }
+        }
+
+        @keyframes floatBackgroundOrbs {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(25px, -20px) scale(1.08);
+            }
+        }
+
+        @keyframes floatBackgroundOrbsReverse {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-25px, 20px) scale(1.06);
+            }
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.18;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.28;
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes badgeShimmer {
+            0% {
+                transform: translateX(-150%);
+            }
+
+            50%,
+            100% {
+                transform: translateX(150%);
+            }
+        }
+
+        @keyframes sweepGleam {
+            0% {
+                transform: translateX(-100%) skewX(-20deg);
+            }
+
+            100% {
+                transform: translateX(200%) skewX(-20deg);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float-card {
+            animation: floatGentle 6s ease-in-out infinite;
+        }
+
+        .animate-orb-1 {
+            animation: floatBackgroundOrbs 12s ease-in-out infinite;
+        }
+
+        .animate-orb-2 {
+            animation: floatBackgroundOrbsReverse 14s ease-in-out infinite;
+        }
+
+        .animate-cta-glow {
+            animation: pulseGlow 5s ease-in-out infinite;
+        }
+
+        /* Glass shine on hover */
+        .glass-shine-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-shine-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transform: skewX(-25deg);
+            transition: none;
+            pointer-events: none;
+        }
+
+        .glass-shine-wrapper:hover::after {
+            left: 140%;
+            transition: all 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Badge Shimmer Overlay */
+        .badge-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge-shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            animation: badgeShimmer 3.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Nav Link Underline Hover */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #000917;
+            transition: all 0.25s ease-out;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active-link::after {
+            width: 100%;
+        }
+
+        /* Staggered entrance classes */
+        .hero-reveal-1 {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-reveal-2 {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+        }
+
+        .hero-reveal-3 {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+        }
+
+        .hero-reveal-4 {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+        }
+
+        .hero-reveal-5 {
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+        }
+
+        /* Tab switcher smooth fade transition */
+        .tab-panel {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .tab-panel.opacity-0 {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .tab-panel.opacity-100 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Respect user's motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            ::before,
+            ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script
+        id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#ffffff", "on-surface-variant": "#44474d", "primary-container": "#0d2137", "secondary-container": "#fc9e0e", "on-secondary": "#ffffff", "error": "#ba1a1a", "color-status-success": "#10B981", "background": "#fbf9fb", "inverse-surface": "#303032", "inverse-on-surface": "#f2f0f2", "surface-container-highest": "#e4e2e4", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#b5c8e5", "secondary-fixed-dim": "#ffb867", "primary-fixed": "#d2e4ff", "outline-variant": "#c4c6cd", "color-border-subtle": "#E2E8F0", "on-tertiary-fixed": "#2a1800", "surface": "#fbf9fb", "on-primary-fixed-variant": "#364860", "surface-container-high": "#e9e7ea", "on-error-container": "#93000a", "inverse-primary": "#b5c8e5", "on-surface": "#1b1c1d", "on-background": "#1b1c1d", "secondary-fixed": "#ffddbb", "surface-variant": "#e4e2e4", "on-primary-fixed": "#081c32", "on-tertiary-container": "#a28259", "surface-container-low": "#f5f3f5", "on-error": "#ffffff", "tertiary-fixed": "#ffddb5", "surface-container": "#efedef", "secondary": "#885200", "tertiary": "#100700", "on-tertiary-fixed-variant": "#5c421f", "on-secondary-fixed": "#2b1700", "error-container": "#ffdad6", "on-secondary-container": "#653c00", "primary": "#000917", "surface-tint": "#4d6079", "tertiary-fixed-dim": "#e6c093", "surface-bright": "#fbf9fb", "outline": "#74777d", "on-primary-container": "#7689a4", "surface-dim": "#dbd9dc", "color-text-main": "#0D2137", "on-primary": "#ffffff", "tertiary-container": "#301c00", "color-surface-card": "#FFFFFF", "color-text-muted": "#64748B", "on-secondary-fixed-variant": "#673d00", "color-bg-canvas": "#F8FAFC" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "24px", "space-xs": "8px", "space-xl": "48px", "space-lg": "32px", "margin": "32px", "gutter": "24px", "space-sm": "16px" }, "fontFamily": { "heading-2": ["Plus Jakarta Sans"], "caption": ["Plus Jakarta Sans"], "body-regular": ["Plus Jakarta Sans"], "body-medium": ["Plus Jakarta Sans"], "heading-1": ["Plus Jakarta Sans"], "display-hero": ["Plus Jakarta Sans"] }, "fontSize": { "heading-2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "caption": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "body-regular": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "body-medium": ["14px", { "lineHeight": "20px", "fontWeight": "500" }], "heading-1": ["28px", { "lineHeight": "36px", "fontWeight": "700" }], "display-hero": ["36px", { "lineHeight": "44px", "fontWeight": "700" }] } } } };</script>
+</head>
+
+<body
+    class="bg-surface font-body-regular text-body-regular text-on-surface antialiased selection:bg-secondary-container/30 selection:text-color-text-main">
+    <header
+        class="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-nav transition-all duration-300"
+        id="main-header">
+        <div class="h-[72px] max-w-[1440px] mx-auto w-full px-3 sm:px-6 flex items-center justify-between gap-1 sm:gap-3">
+            <div class="flex items-center gap-3 shrink-0">
+                    <img class="w-8 h-8 sm:w-10 sm:h-10 object-contain" data-alt="Logo FTI UNSAP"
+                    src="Assets/img/Logo FTI Showcase.svg" />
+                    <div class="flex flex-col">
+                        <span class="text-base sm:text-xl font-extrabold tracking-tight text-[#0D213D] leading-tight">FTI Showcase</span>
+                        <span class="text-[11px] font-medium tracking-tight text-slate-500">Universitas Sebelas April</span>
+                    </div>
+            </div>
+            <div class="hidden xl:flex items-center gap-8 flex-1 max-w-2xl mx-8">
+                    <nav class="flex items-center gap-6 shrink-0"
+                    data-active-classes="text-primary font-body-medium"><a aria-current="page"
+                            class="nav-link active-link text-[#0D213D] font-semibold text-sm py-2 transition-colors"
+                        data-path="jelajah-karya" href="#">Jelajah Karya</a><a
+                            class="nav-link font-medium text-sm text-slate-600 hover:text-[#0D213D] py-2 transition-colors"
+                        data-path="kategori-skill" href="#">Kategori &amp; Skill</a><a
+                            class="nav-link font-medium text-sm text-slate-600 hover:text-[#0D213D] py-2 transition-colors"
+                        data-path="tentang-platform" href="#">Tentang Platform</a></nav>
+                <div class="relative flex-1 group"><span
+                        class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-brand-navy text-[20px] transition-colors">search</span><input
+                        class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-md text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#0D213D] focus:ring-2 focus:ring-[#FFA719]/40 transition-all"
+                        placeholder="Cari karya, skripsi, inovasi..." type="text" /></div>
+            </div>
+            <div class="flex items-center gap-1 sm:gap-2 shrink-0"><a
+                    class="px-2 py-2 sm:px-3.5 rounded-md border border-slate-200 text-xs sm:text-sm font-semibold text-[#0D213D] hover:bg-slate-50 hover:border-slate-300 active:scale-95 transition-all duration-200"
+                    data-path="masuk" href="#">Masuk</a><a
+                    class="px-2 py-2 sm:px-3.5 rounded-md bg-[#0D213D] text-white text-xs sm:text-sm font-bold hover:bg-[#18355D] hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200 shadow-sm"
+                    data-path="daftar" href="#">Daftar</a>
+                <div
+                        class="w-8 h-8 rounded-full bg-[#0D213D] flex items-center justify-center ml-1 ring-2 ring-transparent hover:ring-[#FFA719]/50 transition-all cursor-pointer">
+                        <span class="material-symbols-outlined text-white text-[18px]">person</span></div>
+            </div>
+        </div>
+    </header>
+    <main class="w-full bg-surface min-h-[calc(100vh-72px)]">
+        <div class="flex flex-col w-full">
+            <!-- Top Ambient Glow Gradient Container -->
+            <div class="relative w-full overflow-hidden">
+                <div
+                    class="absolute -top-32 -left-20 w-96 h-96 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none animate-orb-1">
+                </div>
+                <div
+                    class="absolute top-48 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none animate-orb-2">
+                </div>
+                <!-- 1. HERO SECTION -->
+                <section class="max-w-[1280px] mx-auto px-margin pt-space-lg pb-space-xl relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+                        <!-- Left Column: Hero Content & Multi-Filter (60% ~ 7 cols) -->
+                        <div class="lg:col-span-7 flex flex-col gap-space-md">
+                            <!-- University Eyebrow Badge -->
+                            <div
+                                class="hero-reveal-1 inline-flex items-center gap-2 self-start px-3 py-1.5 rounded-full bg-secondary-container/15 text-secondary border border-secondary-container/20 shadow-xs hover:bg-secondary-container/25 transition-colors cursor-default">
+                                <span
+                                    class="w-2 h-2 rounded-full bg-secondary-container animate-ping inline-block"></span>
+                                <span class="font-caption text-caption uppercase tracking-wider font-bold">Universitas
+                                    Sebelas April Sumedang</span>
+                            </div>
+                            <!-- Headline -->
+                            <h1
+                                class="hero-reveal-2 font-display-hero text-display-hero text-color-text-main tracking-tight text-balance">
+                                Satu Etalase untuk Seluruh Karya Digital Mahasiswa FTI
+                            </h1>
+                            <!-- Subtitle -->
+                            <p
+                                class="hero-reveal-3 font-body-regular text-[16px] leading-[26px] text-color-text-muted max-w-xl">
+                                Platform terintegrasi untuk mendokumentasikan, mengkurasi, dan memamerkan proyek
+                                akademik mahasiswa FTI UNSAP secara terverifikasi langsung oleh dosen pengampu.
+                            </p>
+                            <!-- Interactive Multi-Filter Search Card -->
+                            <div
+                                class="hero-reveal-4 w-full bg-color-surface-card rounded-2xl shadow-md border border-color-border-subtle/80 hover:shadow-xl hover:border-color-border-subtle transition-all duration-300 p-3 flex flex-col md:flex-row items-stretch md:items-center gap-space-xs">
+                                <!-- Category Filter -->
+                                <div class="relative flex-1 min-w-0 group">
+                                    <span
+                                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-color-text-muted group-hover:text-primary transition-colors text-[18px]">category</span>
+                                    <select
+                                        class="w-full pl-9 pr-7 py-2 bg-surface-container-low rounded-lg font-caption text-caption text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/10 border border-transparent hover:border-color-border-subtle appearance-none cursor-pointer transition-all">
+                                        <option value="all">Kategori</option>
+                                        <option value="web">Web Application</option>
+                                        <option value="iot">IoT &amp; Robotics</option>
+                                        <option value="mobile">Mobile Application</option>
+                                        <option value="uiux">UI/UX &amp; Product Design</option>
+                                        <option value="ml">Machine Learning / AI</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-color-text-muted pointer-events-none text-[16px]">expand_more</span>
+                                </div>
+                                <!-- Semester Filter -->
+                                <div class="relative flex-1 min-w-0 group">
+                                    <span
+                                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-color-text-muted group-hover:text-primary transition-colors text-[18px]">calendar_month</span>
+                                    <select
+                                        class="w-full pl-9 pr-7 py-2 bg-surface-container-low rounded-lg font-caption text-caption text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/10 border border-transparent hover:border-color-border-subtle appearance-none cursor-pointer transition-all">
+                                        <option value="2025-1">Semester</option>
+                                        <option value="2024-2">Semester Genap 2024/2025</option>
+                                        <option value="2024-1">Semester Ganjil 2024/2025</option>
+                                        <option value="ta">Tugas Akhir &amp; Skripsi</option>
+                                    </select>
+                                    <span
+                                        class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-color-text-muted pointer-events-none text-[16px]">expand_more</span>
+                                </div>
+                                <!-- Search Input -->
+                                <div class="relative flex-[1.4] min-w-0 group">
+                                    <span
+                                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-color-text-muted group-focus-within:text-color-text-main transition-colors text-[18px]">search</span>
+                                    <input
+                                        class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-lg font-body-regular text-body-regular text-on-surface placeholder:text-color-text-muted focus:outline-none focus:ring-2 focus:ring-primary/10 border border-transparent hover:border-color-border-subtle transition-all"
+                                        placeholder="Proyek, stack, mahasiswa..." type="text" />
+                                </div>
+                                <!-- Action Button -->
+                                <button
+                                    class="bg-primary-container hover:bg-primary active:scale-95 text-on-primary px-5 py-2.5 rounded-lg font-body-medium text-body-medium flex items-center justify-center gap-2 transition-all shadow-sm hover:shadow-md shrink-0">
+                                    <span class="material-symbols-outlined text-[18px]">travel_explore</span>
+                                    <span>Cari Karya</span>
+                                </button>
+                            </div>
+                            <!-- Quick Action Buttons & Trust Stats -->
+                            <div class="hero-reveal-5 flex flex-wrap items-center justify-between gap-space-md pt-2">
+                                <div class="flex items-center gap-space-sm">
+                                    <a class="px-5 py-2.5 bg-primary-container text-on-primary rounded-xl font-body-medium text-body-medium flex items-center gap-2 hover:bg-primary hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all group"
+                                        href="#showcase">
+                                        <span>Mulai Jelajah</span>
+                                        <span
+                                            class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                    </a>
+                                    <a class="px-5 py-2.5 bg-surface-container-low text-color-text-main rounded-xl font-body-medium text-body-medium hover:bg-surface-container hover:shadow-xs active:scale-95 transition-all"
+                                        href="#how-it-works">
+                                        Pelajari Program &amp; Kurasi
+                                    </a>
+                                </div>
+                                <!-- Trust Proof Avatar Stack -->
+                                <div class="flex items-center gap-3">
+                                    <div class="flex -space-x-2">
+                                        <img class="w-8 h-8 rounded-full ring-2 ring-surface object-cover hover:scale-110 hover:z-10 transition-transform duration-200"
+                                            data-alt="Close up portrait photograph of an Indonesian male computer science university student smiling warmly wearing dark collegiate jacket in soft academic library lighting"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5VEli9JG6czRykx4teyQJ9wPQOwaZXSkGLMQwFRrlqUl5Y0vcJrlaLPDsL824_TgRtfwZr5uptWegmxCaYrIQuGsW32bu89kQYMraXQ3_Qsx6fCWDHWn9pSkEAAo8J7id23rI0C1uC82M3O6j3QO05VxzmSF9JaHNKur2xPYLjDxT5-UPNssbjw3DWosA14uEG9s4LVl_uaI9mgmc-1KzvSW-eNDKKingTZQT0zG1gNRrm2C4gi_nBw" />
+                                        <img class="w-8 h-8 rounded-full ring-2 ring-surface object-cover hover:scale-110 hover:z-10 transition-transform duration-200"
+                                            data-alt="Portrait photograph of young Indonesian female university student wearing modern dark navy hijab smiling proudly in tech laboratory setting with natural daylight"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCASYNUN5_2bRuvftQgLLTyDGt1yb6i8hcFALq1w2xnfX7dU9P6URJZNoEpTAV3W0anzrGRQSgT5WRUl6Qdaw64aG04LuxEoSdZlWBci3ckuyZGHpujDLAUukH3UGLg_3IcEyhKUKZ8IdAaCaBIcJGEg-OQ9fDWsXsWUNKCNlG4Zp-Rontq_7d3Uv_y8m8TDse94DpKw6wBtId5OpHy3inKQCuVvimy4IyohFTWBUhAN4fwtyXnFsZ8w" />
+                                        <img class="w-8 h-8 rounded-full ring-2 ring-surface object-cover hover:scale-110 hover:z-10 transition-transform duration-200"
+                                            data-alt="Portrait photograph of creative male software developer student with glasses smiling softly in modern campus incubator office space"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJqNmcYDgRriU9U1ehL0g4lM5hQEr4n3-rJpXBF8qRXhEg-oZIsONlJVnhB89gAmZMa7Fn2DMA6AScvVBpKQ2zJEsNt9zj3Q8ZhUbvfw_xRS3erhQRq6oCK3KhEdxrnUTlUdEtnvg8izAC2lRdiIvZ3Om8NR8DKsY7jA_TMuiCbZ1W8OLgA3ZB5i8tj1U4uVykrM39_IVD17NPGUyZDmFG2DN12obLLwDkt88olp1AiWm0U5KfvA6LJA" />
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary flex items-center justify-center font-caption text-[11px] font-bold ring-2 ring-surface hover:scale-110 hover:z-10 transition-transform duration-200">
+                                            +400
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span
+                                            class="font-body-medium text-body-medium text-color-text-main font-semibold">450+
+                                            Karya Terkurasi</span>
+                                        <span class="font-caption text-caption text-color-text-muted">Semester Berjalan
+                                            FTI UNSAP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Column: Visual 3D Stack Mockup (40% ~ 5 cols) -->
+                        <div class="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0">
+                            <!-- Overlapping Background Card (Tilted) -->
+                            <div
+                                class="absolute -top-4 -right-2 md:right-4 w-[85%] bg-surface-container rounded-2xl p-space-sm shadow-md transform rotate-3 scale-95 opacity-80 pointer-events-none transition-transform duration-500 hover:rotate-6">
+                                <div class="flex items-center justify-between pb-3">
+                                    <span
+                                        class="px-2.5 py-1 bg-surface-container-highest rounded-full font-caption text-caption text-on-surface-variant font-medium">UI/UX
+                                        Design</span>
+                                    <span class="font-caption text-caption text-color-text-muted">SIAKAD 3.0</span>
+                                </div>
+                                <div class="h-28 w-full bg-surface-container-highest rounded-xl overflow-hidden mb-3">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-tr from-primary/10 to-secondary-container/10 flex items-center justify-center">
+                                        <span
+                                            class="material-symbols-outlined text-color-text-muted text-[36px]">devices</span>
+                                    </div>
+                                </div>
+                                <p class="font-body-medium text-body-medium text-on-surface font-semibold truncate">
+                                    UI/UX Redesign Portal Layanan UNSAP</p>
+                            </div>
+                            <!-- Main Floating Showcase Card -->
+                            <div
+                                class="relative w-full max-w-md bg-color-surface-card rounded-2xl shadow-xl overflow-hidden animate-float-card glass-shine-wrapper border border-color-border-subtle/70 transition-shadow duration-300 hover:shadow-2xl">
+                                <!-- Top Project Banner Image -->
+                                <div class="relative h-52 w-full overflow-hidden bg-primary-container group/img">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
+                                        data-alt="High-tech modern internet of things agriculture setup showing precision ESP32 sensors and automated greenhouse irrigation pipes with lush Sumedang tobacco leaves in green warm daylight"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6rKe0RqbmxMWQMQV61atAbLCVleQd7Yl9t6SVs04gtsUkPl1l2KIflKhlv96yLyqYsCT6_sCGpOO1BVX7hWXVYxrzsup89fckZrQgnH_bNOl4SOzrxUmMT2Lsyg9d1aCg2MHBbVyM-K4GuNZ3ZQWEuRU1kkITdRvKldLD6n3KEDt-b8holC0NbsGFyw7Ua59ZUKofUAOKEUXY6gUOqMarYdCqMz5MORqbzVdQdJuBneldVZ3zDFZglA" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent">
+                                    </div>
+                                    <!-- Category Badge -->
+                                    <div class="absolute top-3 left-3">
+                                        <span
+                                            class="px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-color-text-main font-caption text-caption font-bold shadow-sm">
+                                            IoT Hardware &amp; Web
+                                        </span>
+                                    </div>
+                                    <!-- Verified Badge -->
+                                    <div class="absolute top-3 right-3">
+                                        <span
+                                            class="badge-shimmer px-2.5 py-1 rounded-full bg-color-status-success text-on-primary font-caption text-[11px] font-bold flex items-center gap-1 shadow-sm">
+                                            <span class="material-symbols-outlined text-[14px]">verified</span>
+                                            <span>Terverifikasi Dosen</span>
+                                        </span>
+                                    </div>
+                                    <!-- Quick live indicator -->
+                                    <div class="absolute bottom-3 left-3 text-on-primary flex items-center gap-2">
+                                        <span class="relative flex h-2.5 w-2.5">
+                                            <span
+                                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-color-status-success opacity-75"></span>
+                                            <span
+                                                class="relative inline-flex rounded-full h-2.5 w-2.5 bg-color-status-success"></span>
+                                        </span>
+                                        <span
+                                            class="font-caption text-caption tracking-wider uppercase opacity-95 font-semibold">Live
+                                            Deployment Prototype</span>
+                                    </div>
+                                </div>
+                                <!-- Card Content Body -->
+                                <div class="p-space-sm flex flex-col gap-space-xs">
+                                    <h3 class="font-heading-2 text-heading-2 text-color-text-main leading-snug">
+                                        Smart Monitoring Green House Berbasis IoT &amp; ESP32
+                                    </h3>
+                                    <p class="font-body-regular text-body-regular text-color-text-muted line-clamp-2">
+                                        Implementasi sensor kelembaban tanah dan mikrokontroler ESP32 dengan dashboard
+                                        analitik real-time MQTT untuk petani lokal Sumedang.
+                                    </p>
+                                    <!-- Student Profile Micro Bar -->
+                                    <div
+                                        class="flex items-center gap-3 py-2 bg-surface-container-low px-3 rounded-xl transition-colors hover:bg-surface-container">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-caption font-bold shrink-0">
+                                            AM
+                                        </div>
+                                        <div class="flex flex-col min-w-0">
+                                            <span
+                                                class="font-body-medium text-body-medium text-color-text-main font-semibold truncate">Arya
+                                                Maulana</span>
+                                            <span class="font-caption text-caption text-color-text-muted truncate">NPM:
+                                                22410082 • Teknik Informatika</span>
+                                        </div>
+                                    </div>
+                                    <!-- Tech Stack Tags -->
+                                    <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-md bg-surface-container font-caption text-caption text-color-text-main font-medium hover:bg-surface-container-highest transition-colors">React</span>
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-md bg-surface-container font-caption text-caption text-color-text-main font-medium hover:bg-surface-container-highest transition-colors">Node.js</span>
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-md bg-surface-container font-caption text-caption text-color-text-main font-medium hover:bg-surface-container-highest transition-colors">ESP32</span>
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-md bg-surface-container font-caption text-caption text-color-text-main font-medium hover:bg-surface-container-highest transition-colors">MQTT</span>
+                                        <span
+                                            class="px-2.5 py-0.5 rounded-md bg-secondary-container/20 text-secondary font-caption text-caption font-semibold">Tugas
+                                            Akhir</span>
+                                    </div>
+                                </div>
+                                <!-- Card Footer Interactive Status -->
+                                <div
+                                    class="px-space-sm py-3 bg-surface-container-low flex items-center justify-between border-t border-color-border-subtle/50">
+                                    <div
+                                        class="flex items-center gap-1 text-color-status-success font-caption text-caption font-semibold">
+                                        <span class="material-symbols-outlined text-[16px]">school</span>
+                                        <span>Nilai: A (92.5)</span>
+                                    </div>
+                                    <button
+                                        class="text-color-text-main hover:text-primary font-caption text-caption font-bold flex items-center gap-1 group/btn active:scale-95 transition-all">
+                                        <span>Detail Repositori</span>
+                                        <span
+                                            class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">arrow_outward</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- 2. TRUST & PERFORMANCE METRICS -->
+            <section class="w-full bg-surface-container-low py-space-lg">
+                <div class="max-w-[1280px] mx-auto px-margin">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+                        <!-- Metric 1 -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm border border-transparent hover:border-color-border-subtle hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-start gap-space-sm group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                                <span class="material-symbols-outlined text-[26px]">inventory_2</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="font-heading-1 text-[32px] font-bold text-color-text-main leading-tight">500</span>
+                                    <span class="font-heading-2 text-heading-2 text-secondary font-bold">+</span>
+                                </div>
+                                <span class="font-body-medium text-body-medium text-color-text-main font-semibold">Karya
+                                    Proyek Terdaftar</span>
+                                <p class="font-caption text-caption text-color-text-muted mt-0.5">Dari Tugas Akhir,
+                                    Capstone, &amp; Praktikum Laboratorium</p>
+                            </div>
+                        </div>
+                        <!-- Metric 2 -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm border border-transparent hover:border-color-status-success/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-start gap-space-sm group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-color-status-success/15 text-color-status-success flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                                <span class="material-symbols-outlined text-[26px]"
+                                    style="font-variation-settings: 'FILL' 1;">verified</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="font-heading-1 text-[32px] font-bold text-color-text-main leading-tight">100</span>
+                                    <span
+                                        class="font-heading-2 text-heading-2 text-color-status-success font-bold">%</span>
+                                </div>
+                                <span
+                                    class="font-body-medium text-body-medium text-color-text-main font-semibold">Tervalidasi
+                                    Dosen</span>
+                                <p class="font-caption text-caption text-color-text-muted mt-0.5">Teruji keaslian kode
+                                    dan metodologi secara akademik</p>
+                            </div>
+                        </div>
+                        <!-- Metric 3 -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm border border-transparent hover:border-secondary-container/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-start gap-space-sm group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-secondary-container/20 text-secondary flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                                <span class="material-symbols-outlined text-[26px]">school</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="font-heading-1 text-[32px] font-bold text-color-text-main leading-tight">3</span>
+                                    <span
+                                        class="font-body-regular text-body-regular text-color-text-muted font-medium ml-1">Program
+                                        Studi</span>
+                                </div>
+                                <span
+                                    class="font-body-medium text-body-medium text-color-text-main font-semibold">Fakultas
+                                    Teknologi Informasi</span>
+                                <p class="font-caption text-caption text-color-text-muted mt-0.5">Teknik Informatika,
+                                    Sistem Informasi, Bisnis Digital</p>
+                            </div>
+                        </div>
+                        <!-- Metric 4 -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm border border-transparent hover:border-primary/20 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-start gap-space-sm group">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                                <span class="material-symbols-outlined text-[26px]">handshake</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="flex items-baseline gap-1">
+                                    <span
+                                        class="font-heading-1 text-[32px] font-bold text-color-text-main leading-tight">50</span>
+                                    <span class="font-heading-2 text-heading-2 text-primary font-bold">+</span>
+                                </div>
+                                <span class="font-body-medium text-body-medium text-color-text-main font-semibold">Mitra
+                                    &amp; Rekruter</span>
+                                <p class="font-caption text-caption text-color-text-muted mt-0.5">Jejaring talenta siap
+                                    kerja di Jawa Barat &amp; Nasional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 3. FEATURED SHOWCASE SECTION -->
+            <section class="max-w-[1280px] mx-auto px-margin py-space-xl" id="showcase">
+                <!-- Header Row -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-sm mb-space-lg">
+                    <div class="flex flex-col gap-1 max-w-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-6 bg-secondary-container rounded-full animate-pulse"></span>
+                            <span
+                                class="font-caption text-caption text-secondary uppercase font-bold tracking-wider">Kurasi
+                                Terbaik</span>
+                        </div>
+                        <h2 class="font-heading-1 text-heading-1 text-color-text-main">Karya Mahasiswa Unggulan</h2>
+                        <p class="font-body-regular text-body-regular text-color-text-muted">
+                            Proyek pilihan dewan validator kurikulum FTI UNSAP dengan kriteria inovasi teruji,
+                            arsitektur bersih, dan dampak terukur bagi masyarakat.
+                        </p>
+                    </div>
+                    <a class="inline-flex items-center gap-1 font-body-medium text-body-medium text-primary hover:text-secondary-container transition-all group shrink-0"
+                        data-path="jelajah-karya" href="#">
+                        <span>Lihat Semua Karya (500+)</span>
+                        <span
+                            class="material-symbols-outlined text-[18px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <!-- 3x2 Grid Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+                    <!-- Card 1 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="High tech agricultural drone and environmental field sensor telemetry station overlooking sunlit tobacco and tea fields in Sumedang hills Indonesia"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1eABBjJG9BNX4zAd-ZkttZoYETG1azRR8hagDOBXKKoeIkmsIDPa3i9NBPFENZrBDNQ6h1Lu0rPMhHeOoVbhCg5NJxGLZQqR8eXg6Y-CB1A-GAdvC2wrnawSidZJdfPHV9RP8D9GpBalrAranRWkd43ZrxAsUKa4oIpRTwMLVf4QoFGJW-equxhXujP2HuHVOdg50H0xBcdjPyyvcgc8XYxzO5WoETdkTYPnBAskiqoVzEBgZP5dRxA" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                IoT Hardware
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    Smart Farming: Monitoring Lahan Tembakau Sumedang Berbasis IoT
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Rizky Febrian</span> •
+                                    Teknik Informatika
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">ESP32</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">LoRaWAN</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Python</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">MQTT</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    Tugas Akhir 2025</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card 2 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="Modern mobile tablet software interface displaying supply chain and local culinary distribution logistics for Sumedang food producers in bright crisp graphic presentation"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjNk13dQoukyuxu0xeCJLi_fEJke86woGK860lo_--o5huRzDcy744l2lTlhfO65QJiifQhn4qE7t4GUQWoWL4FxeZVv_CsgL916Eim5cBGP8DR4EoznKKwTAH764kDvGAI7vruUg27zwudl1eWxmAXII_PS2vOPAtSLr0rKlVaM4sGfHckMnMWzmR1qW39uoGySw3fk-5tGJgldrR4S8PpoK5V-80Yc1jMmw1vh5yEQpMuBfuLjZPQQ" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                Web &amp; Mobile App
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    M-Tahu Sumedang: Platform Distribusi UMKM Pangan Terintegrasi
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Nabila Putri</span> •
+                                    Sistem Informasi
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Flutter</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Laravel
+                                        11</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">PostgreSQL</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Midtrans</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    E-Business &amp; ERP</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card 3 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="Clean corporate web application portal on desktop computer monitor showing student talent recruitment analytics dashboard with modern charts and talent cards"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIEtj3tOn8ZRBfCZrARV1-bewjdw0pXSbGIYqxIhx3OZ5VzCMr1dn0YOhJiDA-B-ZkMr35CbCDxrWOEY8aa8VM1C4i00i94ivDlr47Sl4RM-3pIJGynLwpMDafVAyOZneIvX871HxSyOp5yVGTsN_f4mhMVn2tzxDMejDmYR3R9enUTlOTklWZaIC70c0755uGIdC1Z8ze-wfZvongZSkJ_JUCL8F6lnIqCyCIZysH9erkzZNtzLzxHg" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                Web Application
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    UNSAP Career Portal &amp; Internship Matching Engine
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Fajar Nugraha</span> •
+                                    Teknik Informatika
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Next.js
+                                        14</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">TailwindCSS</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">FastAPI</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Vector
+                                        Search</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    Pemrograman Web Lanjut</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card 4 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="High fidelity UI UX design screens on modern smartphone mockup displaying islamic fintech mobile banking dashboard with emerald green and gold typography"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUtjoHiTQGjyA0bjwgibpowsNvfii976dL4FSUETbKP5dG3bX33emGY5zpJZGbSHyWOJclQcwDmToqfSasdI4dRUMY-Y2kHOSKJJAfFD773bsjGqxW3NzV132FXgiezIjouUe7SLnoAscmrfOWppC-v8etqZLe2OiXHszZ93GKdU5W9U13lUMoaibAsWDrMn8LXNRqQ5qK-huI-TzJqSmEHgU6drtyZYPyLglj8X6mieTSPOaGogozWA" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                UI/UX Design
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    Design System &amp; Mobile Banking Interface Syariah
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Siti Sarah</span> •
+                                    Bisnis Digital
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Figma
+                                        Tokens</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Design
+                                        System</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Prototyping</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Usability
+                                        Testing</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    Interaksi Manusia &amp; Komputer</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card 5 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="Artificial intelligence machine learning computer vision camera analyzing rice crop leaf blights with bounding box analytics overlays in agricultural research facility"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU8gnp15FM7akSVT9oeVnEdomBYuD2uxSWYJ_PoL4QvyR5XcjbR9n-aFQU2wEiRVx6DG2Rx1kA86kb-ZGLUXWjKLg91AxFbLfknq67VIBlu8ZSbS93MTRNxFjPZfQvV4mIfMqdwcBJdlxDYQmDRIKlojDRt0F-nbmGiKFz0Se4wJ3bs89-UA50AjzJiSMrJYuw9EG9VfL2YLC0amASRzpRF3Hg-etDx_KUrfTM-AEacoQBmeK5-y-KZQ" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                Machine Learning
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    Klasifikasi Penyakit Daun Padi dengan Computer Vision
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Diki Darmawan</span> •
+                                    Teknik Informatika
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">TensorFlow</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">YOLOv8</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Python</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Streamlit</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    Kecerdasan Buatan Terapan</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card 6 -->
+                    <article
+                        class="bg-color-surface-card rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group border border-color-border-subtle/50 hover:border-color-border-subtle">
+                        <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                                data-alt="Interactive 3D GIS geospatial digital heritage map of historical Sumedang Larang cultural kingdom landmarks on widescreen laptop screen display"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgu47oos2EOag3yw8_2Kf5yRcP1astKR_15UiKDxJZ-S7xbu3lC1Y0Dk1KSG20cb-f1ENYM8BeC23d0uLACdLCbNecF6yJW2aTc-go49sStEbbM17S8uKUPr6fAwecROyRYq8q0T-pwKhNsnpNZWHs5pIHWfW7sxkeOJBILCU39lMhR5EgMN4b2InY-tF48zYZNxN08Kiogd7VnubYLI7Y7cmT7-fejR-QvebkmiXysA5lvkapxx-BaQ" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-sm text-color-text-main font-caption text-[11px] font-bold shadow-xs">
+                                GIS &amp; Web System
+                            </span>
+                            <span
+                                class="badge-shimmer absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-caption text-[11px] font-bold flex items-center gap-1 shadow-xs border border-emerald-200">
+                                <span class="material-symbols-outlined text-[13px]"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span>Terverifikasi Dosen</span>
+                            </span>
+                        </div>
+                        <div class="p-space-sm flex flex-col flex-1 justify-between gap-space-sm">
+                            <div>
+                                <h3
+                                    class="font-heading-2 text-[17px] leading-snug font-bold text-color-text-main group-hover:text-primary transition-colors mb-1.5">
+                                    Sistem Informasi Geografis Pariwisata Budaya Sumedang Larang
+                                </h3>
+                                <p class="font-caption text-caption text-color-text-muted mb-3">
+                                    Mahasiswa: <span class="text-color-text-main font-semibold">Anisa Rahmawati</span> •
+                                    Sistem Informasi
+                                </p>
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Mapbox
+                                        GL</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">React</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">PostGIS</span>
+                                    <span
+                                        class="px-2 py-0.5 rounded bg-surface-container-low text-color-text-main font-caption text-[11px] hover:bg-surface-container transition-colors">Node.js</span>
+                                </div>
+                            </div>
+                            <div
+                                class="pt-3 bg-surface-container-lowest flex items-center justify-between border-t border-color-border-subtle/50">
+                                <span class="font-caption text-[11px] text-color-text-muted truncate max-w-[190px]">MK:
+                                    Sistem Informasi Geografis</span>
+                                <button
+                                    class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-color-text-main font-caption text-caption font-semibold transition-all active:scale-95 flex items-center gap-1 group/btn">
+                                    <span>Buka</span>
+                                    <span
+                                        class="material-symbols-outlined text-[14px] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform">open_in_new</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- 4. CATEGORY & SKILL HUB SECTION -->
+            <section class="w-full bg-surface-container-low py-space-xl">
+                <div class="max-w-[1280px] mx-auto px-margin">
+                    <div class="text-center max-w-2xl mx-auto mb-space-xl flex flex-col gap-2">
+                        <span
+                            class="font-caption text-caption text-secondary uppercase font-bold tracking-wider">Pemetaan
+                            Kompetensi</span>
+                        <h2 class="font-heading-1 text-heading-1 text-color-text-main">Eksplorasi Berdasarkan Kategori
+                            &amp; Keahlian</h2>
+                        <p class="font-body-regular text-body-regular text-color-text-muted">
+                            Telusuri ratusan karya yang dikelompokkan berdasarkan fokus rekayasa perangkat lunak,
+                            perancangan antarmuka, hingga perangkat keras dan otomasi cerdas.
+                        </p>
+                    </div>
+                    <!-- 4 Category Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+                        <!-- Hub 1: Web & Mobile -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:-translate-y-1.5 border border-transparent hover:border-primary/20">
+                            <div>
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center mb-space-sm group-hover:bg-secondary-container group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 shadow-xs">
+                                    <span class="material-symbols-outlined text-[30px]">devices</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <h3
+                                        class="font-heading-2 text-heading-2 text-color-text-main group-hover:text-primary transition-colors">
+                                        Web &amp; Mobile App</h3>
+                                    <span
+                                        class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] font-bold text-primary">240+</span>
+                                </div>
+                                <p class="font-body-regular text-body-regular text-color-text-muted mb-4">
+                                    Aplikasi arsitektur modern berorientasi layanan, progressive web apps, dan ekosistem
+                                    multiplatform mobile.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 pt-2">
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">React</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Flutter</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Next.js</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Laravel</span>
+                                </div>
+                                <div
+                                    class="mt-4 flex items-center text-primary group-hover:text-secondary font-caption text-caption font-bold gap-1 transition-colors">
+                                    <span>Jelajah Kategori</span>
+                                    <span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hub 2: UI/UX & Product Design -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:-translate-y-1.5 border border-transparent hover:border-secondary-container/30">
+                            <div>
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-secondary-container/20 text-secondary flex items-center justify-center mb-space-sm group-hover:bg-primary-container group-hover:text-on-primary group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 shadow-xs">
+                                    <span class="material-symbols-outlined text-[30px]">draw</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <h3
+                                        class="font-heading-2 text-heading-2 text-color-text-main group-hover:text-secondary transition-colors">
+                                        UI/UX Design</h3>
+                                    <span
+                                        class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] font-bold text-secondary">95+</span>
+                                </div>
+                                <p class="font-body-regular text-body-regular text-color-text-muted mb-4">
+                                    Riset pengguna terverifikasi, design system berskala industri, wireframing, dan
+                                    usability prototype interaktif.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 pt-2">
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Figma</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Wireframing</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">UX
+                                        Research</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Design
+                                        System</span>
+                                </div>
+                                <div
+                                    class="mt-4 flex items-center text-primary group-hover:text-secondary font-caption text-caption font-bold gap-1 transition-colors">
+                                    <span>Jelajah Kategori</span>
+                                    <span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hub 3: IoT & Embedded -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:-translate-y-1.5 border border-transparent hover:border-color-status-success/30">
+                            <div>
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-color-status-success/15 text-color-status-success flex items-center justify-center mb-space-sm group-hover:bg-primary-container group-hover:text-on-primary group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 shadow-xs">
+                                    <span class="material-symbols-outlined text-[30px]">memory</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <h3
+                                        class="font-heading-2 text-heading-2 text-color-text-main group-hover:text-color-status-success transition-colors">
+                                        IoT &amp; Robotics</h3>
+                                    <span
+                                        class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] font-bold text-emerald-700">85+</span>
+                                </div>
+                                <p class="font-body-regular text-body-regular text-color-text-muted mb-4">
+                                    Integrasi sensor mikrokontroler, telemetri nirkabel LoRaWAN, smart device cerdas,
+                                    dan otomasi pertanian presisi.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 pt-2">
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Arduino</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">ESP32</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">LoRaWAN</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Robotics</span>
+                                </div>
+                                <div
+                                    class="mt-4 flex items-center text-primary group-hover:text-secondary font-caption text-caption font-bold gap-1 transition-colors">
+                                    <span>Jelajah Kategori</span>
+                                    <span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hub 4: Startup & Data Science -->
+                        <div
+                            class="bg-color-surface-card rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer hover:-translate-y-1.5 border border-transparent hover:border-primary/20">
+                            <div>
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-surface-container-highest text-primary flex items-center justify-center mb-space-sm group-hover:bg-secondary-container group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 shadow-xs">
+                                    <span class="material-symbols-outlined text-[30px]">rocket_launch</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-1">
+                                    <h3
+                                        class="font-heading-2 text-heading-2 text-color-text-main group-hover:text-primary transition-colors">
+                                        Data &amp; Startup</h3>
+                                    <span
+                                        class="px-2 py-0.5 rounded-full bg-surface-container font-caption text-[11px] font-bold text-primary">80+</span>
+                                </div>
+                                <p class="font-body-regular text-body-regular text-color-text-muted mb-4">
+                                    Pemodelan prediktif machine learning, business analytics berbasis BI, dan validasi
+                                    model bisnis rintisan digital.
+                                </p>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap gap-1.5 pt-2">
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">PowerBI</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Python
+                                        ML</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">BMC
+                                        Canvas</span>
+                                    <span
+                                        class="px-2 py-1 rounded bg-surface-container-low font-caption text-[11px] text-color-text-main group-hover:bg-surface-container transition-colors">Data
+                                        Mining</span>
+                                </div>
+                                <div
+                                    class="mt-4 flex items-center text-primary group-hover:text-secondary font-caption text-caption font-bold gap-1 transition-colors">
+                                    <span>Jelajah Kategori</span>
+                                    <span
+                                        class="material-symbols-outlined text-[16px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- 5. HOW IT WORKS SECTION (Role-Based Tab Controller) -->
+            <section class="max-w-[1280px] mx-auto px-margin py-space-xl" id="how-it-works">
+                <div class="text-center max-w-2xl mx-auto mb-space-lg flex flex-col gap-2">
+                    <span class="font-caption text-caption text-secondary uppercase font-bold tracking-wider">Alur &amp;
+                        Mekanisme Kurasi</span>
+                    <h2 class="font-heading-1 text-heading-1 text-color-text-main">Bagaimana FTI Showcase Bekerja</h2>
+                    <p class="font-body-regular text-body-regular text-color-text-muted">
+                        Standar mutu kurasi akademik memastikan setiap artefak kode dan rancangan produk memiliki
+                        kredibilitas terjamin bagi industri.
+                    </p>
+                    <!-- Segmented Tab Bar -->
+                    <div class="mt-4 inline-flex p-1.5 bg-surface-container-low rounded-xl self-center max-w-full overflow-x-auto border border-color-border-subtle/50"
+                        id="roleTabs">
+                        <button
+                            class="px-5 py-2 rounded-lg font-body-medium text-body-medium font-semibold bg-primary-container text-on-primary shadow-sm transition-all duration-200 cursor-pointer"
+                            id="tab-student" onclick="switchTab('student')">
+                            Mahasiswa FTI
+                        </button>
+                        <button
+                            class="px-5 py-2 rounded-lg font-body-medium text-body-medium text-color-text-muted hover:text-color-text-main hover:bg-surface-container transition-all duration-200 cursor-pointer"
+                            id="tab-lecturer" onclick="switchTab('lecturer')">
+                            Dosen &amp; Validator
+                        </button>
+                        <button
+                            class="px-5 py-2 rounded-lg font-body-medium text-body-medium text-color-text-muted hover:text-color-text-main hover:bg-surface-container transition-all duration-200 cursor-pointer"
+                            id="tab-recruiter" onclick="switchTab('recruiter')">
+                            Rekruter Industri
+                        </button>
+                    </div>
+                </div>
+                <!-- Tab 1: Mahasiswa (Default Active) -->
+                <div class="tab-panel opacity-100 grid grid-cols-1 md:grid-cols-3 gap-space-md" id="content-student">
+                    <!-- Step 1 -->
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm relative overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary-container/10 text-primary flex items-center justify-center font-heading-2 font-bold mb-space-sm">
+                            01
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Unggah Proyek &amp; Stack
+                        </h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted mb-6 flex-1">
+                            Lengkapi ringkasan luaran, tautkan repositori GitHub, URL demo interaktif, dokumen laporan
+                            praktikum, serta aset multimedia proyek.
+                        </p>
+                        <div
+                            class="p-3 bg-surface-container-low rounded-xl flex items-center gap-2 text-caption text-color-text-muted">
+                            <span class="material-symbols-outlined text-secondary text-[18px]">cloud_upload</span>
+                            <span>Dukungan Git, PDF laporan &amp; YouTube Demo</span>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm relative overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-color-status-success/15 text-color-status-success flex items-center justify-center font-heading-2 font-bold mb-space-sm">
+                            02
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Validasi &amp; Penilaian
+                            Dosen</h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted mb-6 flex-1">
+                            Dosen pengampu mata kuliah mengevaluasi mutu teknis, keaslian kode, dan memberikan lencana
+                            resmi verified grade yang masuk ke sistem.
+                        </p>
+                        <div
+                            class="p-3 bg-surface-container-low rounded-xl flex items-center gap-2 text-caption text-color-text-muted">
+                            <span
+                                class="material-symbols-outlined text-color-status-success text-[18px]">verified_user</span>
+                            <span>Status lencana hijau resmi dari FTI UNSAP</span>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm relative overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary-container/20 text-secondary flex items-center justify-center font-heading-2 font-bold mb-space-sm">
+                            03
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Bagikan Portofolio &amp; QR
+                            Code</h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted mb-6 flex-1">
+                            Dapatkan URL portofolio publik instan beserta kartu profil digital ber-QR code untuk
+                            dilampirkan langsung pada resume dan LinkedIn.
+                        </p>
+                        <div
+                            class="p-3 bg-surface-container-low rounded-xl flex items-center gap-2 text-caption text-color-text-muted">
+                            <span class="material-symbols-outlined text-primary text-[18px]">share</span>
+                            <span>Tautan siap disematkan pada CV rekruter</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab 2: Dosen & Validator (Hidden by default) -->
+                <div class="tab-panel hidden opacity-0 grid grid-cols-1 md:grid-cols-3 gap-space-md"
+                    id="content-lecturer">
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">rule_folder</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Monitoring Rubrik Capstone
+                        </h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Kelola seluruh tugas besar mahasiswa dari kelas yang Anda ampu dengan dashboard terpusat
+                            tanpa repot mengunduh puluhan file ZIP.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">rate_review</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Feedback &amp; Validasi Kode
+                        </h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Beri masukan konstruktif secara inline, cek keaslian repositori, dan terbitkan status
+                            verifikasi akademik hanya dalam 1-klik.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">archive</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Akreditasi &amp; Repositori
+                        </h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Ekspor portofolio luaran mahasiswa secara otomatis untuk kebutuhan borang akreditasi
+                            LAM-INFOKOM program studi FTI UNSAP.
+                        </p>
+                    </div>
+                </div>
+                <!-- Tab 3: Rekruter Industri (Hidden by default) -->
+                <div class="tab-panel hidden opacity-0 grid grid-cols-1 md:grid-cols-3 gap-space-md"
+                    id="content-recruiter">
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">search_check</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Filter Tech Stack Riil</h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Cari kandidat magang atau fresh graduate berdasarkan spesifikasi teknologi aktual yang
+                            mereka kuasai lewat karya nyata yang dapat diuji.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">code_blocks</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Inspeksi Repositori Langsung
+                        </h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Akses commit history, dokumentasi clean code, dan live demo tanpa bias klaim keterampilan
+                            satu arah di CV konvensional.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-color-surface-card rounded-2xl p-space-md shadow-sm flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-color-border-subtle">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary flex items-center justify-center mb-space-sm shadow-xs">
+                            <span class="material-symbols-outlined">outgoing_mail</span>
+                        </div>
+                        <h3 class="font-heading-2 text-heading-2 text-color-text-main mb-2">Koneksi Karir Langsung</h3>
+                        <p class="font-body-regular text-body-regular text-color-text-muted flex-1">
+                            Kirim tawaran interview magang atau posisi kerja penuh waktu langsung kepada mahasiswa
+                            bertalenta melalui platform resmi kampus.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- 6. CALL TO ACTION (CTA) BANNER (Kampus SSO Integration) -->
+            <section class="max-w-[1280px] mx-auto px-margin pb-space-xl">
+                <div
+                    class="relative w-full rounded-3xl bg-primary-container text-on-primary overflow-hidden px-6 py-12 md:p-14 shadow-2xl border border-primary-container/80 group/cta">
+                    <!-- Ambient Visual Elements with Breathing Amber Glow -->
+                    <div
+                        class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none animate-cta-glow">
+                    </div>
+                    <div
+                        class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-surface-tint/20 blur-3xl pointer-events-none animate-orb-2">
+                    </div>
+                    <div class="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center gap-space-sm">
+                        <!-- Faculty SSO Badge -->
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-lowest/10 backdrop-blur-sm border border-surface-container-lowest/15 hover:bg-surface-container-lowest/20 transition-colors">
+                            <span
+                                class="material-symbols-outlined text-secondary-container text-[18px]">verified_user</span>
+                            <span class="font-caption text-caption text-on-primary uppercase tracking-wider font-bold">
+                                Akses SSO Mahasiswa &amp; Dosen FTI
+                            </span>
+                        </div>
+                        <!-- Headline -->
+                        <h2
+                            class="font-heading-1 text-[32px] md:text-[38px] leading-tight font-bold text-on-primary text-balance">
+                            Siapkan Portofolio Profesionalmu Sekarang
+                        </h2>
+                        <!-- Subtitle -->
+                        <p
+                            class="font-body-regular text-[16px] leading-[26px] text-on-primary-container max-w-2xl text-balance">
+                            Selamatkan karya akademikmu dari kuburan proyek hard-drive dan tingkatkan peluang karir ke
+                            level industri teknologi nasional maupun internasional.
+                        </p>
+                        <!-- Google SSO Primary Action Button -->
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                            <a class="relative overflow-hidden px-7 py-3.5 bg-surface-container-lowest hover:bg-surface-container-low text-color-text-main rounded-xl font-body-medium text-body-medium font-bold flex items-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-95 group/sso shrink-0"
+                                data-path="masuk-google" href="#">
+                                <!-- Light Gleam sweep on hover -->
+                                <div
+                                    class="absolute inset-0 -translate-x-full group-hover/sso:animate-[sweepGleam_0.8s_ease-in-out] bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none">
+                                </div>
+                                <!-- Official Multi-colored Google "G" SVG -->
+                                <svg class="w-5 h-5 shrink-0 transition-transform duration-300 group-hover/sso:scale-110"
+                                    viewbox="0 0 24 24">
+                                    <path
+                                        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17Z"
+                                        fill="#4285F4"></path>
+                                    <path
+                                        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24Z"
+                                        fill="#34A853"></path>
+                                    <path
+                                        d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.14-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12c0 2.03.45 3.84 1.25 5.42l4.03-3.15Z"
+                                        fill="#FBBC05"></path>
+                                    <path
+                                        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98Z"
+                                        fill="#EA4335"></path>
+                                </svg>
+                                <span class="relative z-10">Masuk dengan Google Kampus</span>
+                            </a>
+                            <a class="px-6 py-3.5 rounded-xl bg-surface-container-lowest/10 hover:bg-surface-container-lowest/20 active:scale-95 text-on-primary font-body-medium text-body-medium font-semibold border border-white/10 hover:border-white/25 transition-all"
+                                data-path="panduan-unggah" href="#">
+                                Lihat Panduan &amp; Standar Proyek
+                            </a>
+                        </div>
+                        <!-- Helper Note -->
+                        <p
+                            class="font-caption text-caption text-on-primary-container/80 pt-2 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px] text-color-status-success">check</span>
+                            <span>Mendukung akun resmi <strong>@student.unsap.ac.id</strong> &amp;
+                                <strong>@unsap.ac.id</strong> terintegrasi SIAKAD</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <!-- Interactive Script for Tab Controller & Dynamic Nav Elevation -->
+            <script>
+                // Tab switcher with smooth fade & slide transitions
+                function switchTab(role) {
+                    const roles = ['student', 'lecturer', 'recruiter'];
+
+                    roles.forEach(r => {
+                        const panel = document.getElementById('content-' + r);
+                        const btn = document.getElementById('tab-' + r);
+
+                        if (r === role) {
+                            // Show active panel
+                            if (panel) {
+                                panel.classList.remove('hidden');
+                                setTimeout(() => {
+                                    panel.classList.remove('opacity-0');
+                                    panel.classList.add('opacity-100');
+                                }, 10);
+                            }
+                            if (btn) {
+                                btn.className = 'px-5 py-2 rounded-lg font-body-medium text-body-medium font-semibold bg-primary-container text-on-primary shadow-sm transition-all duration-200 cursor-pointer';
+                            }
+                        } else {
+                            // Hide other panels
+                            if (panel) {
+                                panel.classList.remove('opacity-100');
+                                panel.classList.add('opacity-0');
+                                panel.classList.add('hidden');
+                            }
+                            if (btn) {
+                                btn.className = 'px-5 py-2 rounded-lg font-body-medium text-body-medium text-color-text-muted hover:text-color-text-main hover:bg-surface-container transition-all duration-200 cursor-pointer';
+                            }
+                        }
+                    });
+                }
+
+                // Dynamic navbar elevation & blur on window scroll
+                window.addEventListener('scroll', () => {
+                    const header = document.getElementById('main-header');
+                    if (window.scrollY > 20) {
+                        header.classList.add('shadow-md', 'bg-surface-container-lowest/95');
+                        header.classList.remove('bg-surface-container-lowest/80');
+                    } else {
+                        header.classList.remove('shadow-md', 'bg-surface-container-lowest/95');
+                        header.classList.add('bg-surface-container-lowest/80');
+                    }
+                });
+            </script>
+        </div>
+    </main>
+    <footer class="w-full bg-primary-container text-inverse-on-surface py-space-xl border-t border-primary/20">
+        <div class="max-w-[1280px] mx-auto px-margin">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl mb-space-xl">
+                <div class="flex flex-col gap-space-sm">
+                    <div class="flex items-center gap-space-xs"><span
+                            class="font-heading-1 text-heading-1 text-on-primary tracking-tight">FTI UNSAP</span></div>
+                    <p class="font-body-regular text-body-regular text-on-primary-container max-w-sm">Pusat etalase dan
+                        repositori karya inovasi mahasiswa serta sivitas akademika Fakultas Teknologi Informasi,
+                        Universitas Sebelas April.</p>
+                    <div class="flex items-center gap-space-xs text-color-status-success mt-2"><span
+                            class="material-symbols-outlined text-[18px]">verified</span><span
+                            class="font-caption text-caption text-on-primary">Terakreditasi &amp; Terverifikasi
+                            Kampus</span></div>
+                </div>
+                <div class="flex flex-col gap-space-sm">
+                    <h3 class="font-heading-2 text-heading-2 text-on-primary">Tautan Akademik</h3>
+                    <ul class="flex flex-col gap-space-xs">
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-on-primary-container text-[16px]">open_in_new</span><a
+                                class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="unsap-utama" href="#">Portal Universitas (UNSAP)</a></li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-on-primary-container text-[16px]">school</span><a
+                                class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="portal-fti" href="#">Portal Resmi Fakultas FTI</a></li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-on-primary-container text-[16px]">account_balance</span><a
+                                class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="siakad" href="#">SIAKAD UNSAP</a></li>
+                        <li class="flex items-center gap-2"><span
+                                class="material-symbols-outlined text-on-primary-container text-[16px]">menu_book</span><a
+                                class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="jurnal" href="#">Jurnal &amp; Publikasi Ilmiah</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col gap-space-sm">
+                    <h3 class="font-heading-2 text-heading-2 text-on-primary">Kategori Unggulan</h3>
+                    <ul class="flex flex-col gap-space-xs">
+                        <li><a class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="kategori-software-engineering" href="#">Rekayasa Perangkat Lunak</a></li>
+                        <li><a class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="kategori-ai-data-science" href="#">Kecerdasan Buatan &amp; Sains Data</a>
+                        </li>
+                        <li><a class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="kategori-iot-network" href="#">Jaringan Komputer &amp; IoT</a></li>
+                        <li><a class="font-body-regular text-body-regular text-on-primary-container hover:text-on-primary transition-colors"
+                                data-path="kategori-cybersecurity" href="#">Keamanan Siber &amp; Cloud</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="pt-space-lg border-t border-on-surface-variant/20 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+                <p class="font-caption text-caption text-on-primary-container">© 2026 FTI Universitas Sebelas April. All
+                    rights reserved.</p>
+                <div class="flex items-center gap-space-md"><a
+                        class="font-caption text-caption text-on-primary-container hover:text-on-primary transition-colors"
+                        data-path="kebijakan-privasi" href="#">Kebijakan Privasi</a><a
+                        class="font-caption text-caption text-on-primary-container hover:text-on-primary transition-colors"
+                        data-path="syarat-ketentuan" href="#">Syarat &amp; Ketentuan</a><a
+                        class="font-caption text-caption text-on-primary-container hover:text-on-primary transition-colors"
+                        data-path="kontak-fakultas" href="#">Kontak Fakultas</a></div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
